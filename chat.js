@@ -15,7 +15,7 @@
       fail:'Das hat leider nicht geklappt. Bitte schreib direkt per WhatsApp oder E-Mail:'
     },
     fq:'Deine Frage',fm:'Deine E-Mail',fc:'Ich bin einverstanden, dass meine Angaben zur Beantwortung per E-Mail übermittelt werden.',fs:'Absenden',fsending:'Wird gesendet …',ferr:'Bitte Frage, E-Mail und Einverständnis angeben.',
-    wa:'Per WhatsApp schreiben',mail:'E-Mail-Adresse kopieren',copied:'Kopiert: ',
+    call:'Anrufen',wa:'Per WhatsApp schreiben',mail:'E-Mail-Adresse kopieren',copied:'Kopiert: ',
     mailSubject:'Anfrage Werbevideo',
     foot:'Automatischer Assistent. Nachrichten an Denys gehen per E-Mail. ',priv:'Datenschutz',privHref:'/datenschutz'
   }:{
@@ -33,7 +33,7 @@
       fail:'Sorry, that did not work. Please write directly via WhatsApp or e-mail:'
     },
     fq:'Your question',fm:'Your e-mail',fc:'I agree that my details are sent by e-mail so my question can be answered.',fs:'Send',fsending:'Sending …',ferr:'Please enter a question, an e-mail and your consent.',
-    wa:'Message on WhatsApp',mail:'Copy e-mail address',copied:'Copied: ',
+    call:'Call',wa:'Message on WhatsApp',mail:'Copy e-mail address',copied:'Copied: ',
     mailSubject:'Video enquiry',
     foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/datenschutz'
   };
@@ -56,7 +56,9 @@
   var ht=el('div','sas-ht');ht.appendChild(el('div','sas-t',T.title));ht.appendChild(el('div','sas-s',T.sub));
   var x=el('button','sas-x');x.type='button';x.setAttribute('aria-label',T.close);
   x.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-  head.appendChild(av);head.appendChild(ht);head.appendChild(x);
+  var ph=el('a','sas-x sas-ph');ph.href='tel:+4917663444890';ph.setAttribute('aria-label',T.call+' +49 176 63444890');ph.title='+49 176 63444890';
+  ph.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
+  head.appendChild(av);head.appendChild(ht);head.appendChild(ph);head.appendChild(x);
 
   var log=el('div','sas-log');log.setAttribute('role','log');log.setAttribute('aria-live','polite');
   var chips=el('div','sas-chips');
@@ -84,7 +86,8 @@
       function manual(){b.textContent=MAIL;var r=document.createRange();r.selectNodeContents(b);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);}
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(MAIL).then(done,manual);}else{manual();}
     });
-    w.appendChild(a);w.appendChild(b);log.appendChild(w);
+    var c=el('a','sas-lk',T.call+': +49 176 63444890');c.href='tel:+4917663444890';
+    w.appendChild(a);w.appendChild(b);w.appendChild(c);log.appendChild(w);
   }
   function ask2(){
     var f=el('form','sas-card');f.noValidate=true;
