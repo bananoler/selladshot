@@ -66,7 +66,7 @@ h1{font-size:clamp(42px,6.5vw,84px);line-height:1;margin-bottom:28px}
 
 /* about */
 .arow{display:flex;align-items:center;gap:56px}
-.face{flex:0 0 409px;width:409px;height:538px;object-fit:cover;border-radius:24px;background:#c9d8ef}
+.face{flex:0 0 409px;width:409px;height:538px;object-fit:cover;object-position:50% 50%;border-radius:24px;background:#c9d8ef}
 .atext{flex:1;min-width:0;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
 .atext h2{margin-bottom:6px}
 
