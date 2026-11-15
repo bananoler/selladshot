@@ -40,7 +40,7 @@ h2.dark{color:var(--navy)}
 /* hero */
 .hero{padding-block:28px 72px;color:#fff}
 .topbar{--tbh:100px;--tp:32px;position:sticky;top:0;z-index:50;height:var(--tbh);box-sizing:border-box;padding-top:var(--tp);margin-bottom:calc(var(--tbh)*-1);color:#fff;transition:background .3s,box-shadow .3s,-webkit-backdrop-filter .3s,backdrop-filter .3s}
-.topbar.scrolled{background:linear-gradient(90deg,rgba(0,74,173,.7),rgba(203,108,230,.7));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,20,80,.18)}
+.topbar.scrolled{background:linear-gradient(90deg,rgba(0,74,173,.88),rgba(203,108,230,.88));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,20,80,.18)}
 header.hero{padding-top:172px}
 .burger,.mmenu{display:none}
 html{scroll-padding-top:80px}
@@ -163,11 +163,11 @@ footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.8
   .topbar{--tbh:59px;--tp:14px}
   header.hero{padding-top:107px}
   .navcta{display:none}
-  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;margin:-6px -8px -6px 0;padding:0 10px;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .burger span{display:block;height:2.5px;border-radius:2px;background:#fff;transition:transform .25s,opacity .2s}
-  .burger[aria-expanded=true] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
-  .burger[aria-expanded=true] span:nth-child(2){opacity:0}
-  .burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  .burger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-6px -8px -6px 0;padding:0;background:none;border:0;cursor:pointer;color:#fff;-webkit-tap-highlight-color:transparent;filter:drop-shadow(0 1px 3px rgba(0,20,80,.45))}
+  .burger svg{display:block;flex:none}
+  .burger .bi-close{display:none}
+  .burger[aria-expanded=true] .bi-open{display:none}
+  .burger[aria-expanded=true] .bi-close{display:block}
   .mmenu{position:absolute;left:0;right:0;top:100%;flex-direction:column;padding:6px 20px 16px;background:linear-gradient(90deg,rgba(0,74,173,.92),rgba(203,108,230,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 24px rgba(0,20,80,.25)}
   .mmenu.open{display:flex}
   .mmenu a{padding:13px 0;font-weight:600;font-size:18px;border-bottom:1px solid rgba(255,255,255,.18)}
