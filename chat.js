@@ -37,7 +37,7 @@
     mailSubject:'Video enquiry',
     foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/datenschutz'
   };
-  var WA='https://wa.me/4917663444890',MAIL='denys@selladshot.com',KEY='WEB3FORMS_ACCESS_KEY';
+  var WA='https://wa.me/4917663444890',MAIL='denys@selladshot.com';
   var RX=[
     ['addons',/add-?on|zusatz|extra|aufpreis/i],
     ['price',/kost|preis|prices?|cost|how much|wieviel|wie viel|€|euro|tarif|rate/i],
@@ -87,7 +87,6 @@
     w.appendChild(a);w.appendChild(b);log.appendChild(w);
   }
   function ask2(){
-    if(KEY==='WEB3FORMS_ACCESS_KEY'){links();showChips();return;}
     var f=el('form','sas-card');f.noValidate=true;
     var l1=el('label','sas-lb',T.fq);l1.setAttribute('for','sas-q');
     var q=el('textarea','sas-ta');q.id='sas-q';q.rows=3;q.maxLength=1500;
@@ -104,11 +103,11 @@
       if(!qv||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ev)||!cb.checked){er.textContent=T.ferr;return;}
       if(hp.checked)return;
       go.disabled=true;go.textContent=T.fsending;
-      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({access_key:KEY,subject:'SellAdShot Chat ('+(de?'DE':'EN')+')',from_name:'SellAdShot Chat',email:ev,replyto:ev,message:qv})})
+      fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({_subject:'SellAdShot Chat ('+(de?'DE':'EN')+')',_captcha:'false',_template:'box',name:'SellAdShot Chat',email:ev,message:qv})})
       .then(function(r){return r.json();})
       .then(function(j){
-        if(!j.success)throw new Error('x');
+        if(String(j.success)!=='true')throw new Error('x');
         f.parentNode.removeChild(f);msg('me',qv);msg('bot',T.a.sent);showChips();
       }).catch(function(){
         f.parentNode.removeChild(f);msg('bot',T.a.fail);links();showChips();
