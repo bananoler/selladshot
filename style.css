@@ -156,11 +156,11 @@ footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.8
   .nav{margin-bottom:28px}
   .navcta{display:none}
   .brand{font-size:20px}
-  .hrow{align-items:center}
+  .hrow{align-items:center;gap:18px}
   .htext{width:100%}
   .hvids{width:338px;height:470px}
   .hv1{left:0;top:57px;width:215px;height:400px}
-  .hv2{left:185px;top:90px;width:150px;height:270px}
+  .hv2{left:185px;top:180px;width:150px;height:223px}
   .badge{left:180px;top:361px;width:96px;height:96px}
   .badge b{top:11px}
   .badge span{top:66px}
