@@ -46,8 +46,9 @@ h2.dark{color:var(--navy)}
 .navcta{font-size:16px;padding:12px 26px}
 .hrow{display:flex;align-items:center;justify-content:space-between;gap:48px}
 .htext{flex:1 1 0;min-width:0}
-h1{font-size:clamp(42px,5vw,72px);margin-bottom:22px}
-.sub{font-size:clamp(18px,2vw,24px);font-style:italic;opacity:.92;margin-bottom:26px}
+@media (min-width:1001px){.htext{flex:0 0 580px}}
+h1{font-size:clamp(42px,5vw,72px);line-height:1.1;margin-bottom:22px}
+.sub{font-size:clamp(18px,2vw,24px);line-height:1.5;font-style:italic;opacity:.92;margin-bottom:26px}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
 .chips span{border:1.5px solid #1d12c9;border-radius:999px;padding:8px 18px;font-size:15px;font-weight:600}
 .hvids{position:relative;flex:0 0 480px;height:540px}
