@@ -141,7 +141,7 @@ h1{font-size:clamp(42px,6.5vw,84px);line-height:1;margin-bottom:28px}
   footer{font-size:13.5px}
 }
 .panel .btn.dark{margin-top:10px}
-footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.85;font-size:15px;padding:22px 4px 10px}
+footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.85;font-size:15px;padding:44px 4px 28px}
 
 /* tablet */
 @media (max-width:1000px){
