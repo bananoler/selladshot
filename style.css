@@ -121,9 +121,14 @@ h1{font-size:clamp(42px,5vw,72px);margin-bottom:22px}
 .atext p{text-align:justify;hyphens:auto}
 .phoneonly{display:none}
 @media (min-width:641px){
-  .panel{position:relative;min-height:645px;padding-bottom:20px}
-  .cline{margin-top:auto}
-  .panel .btn.dark{position:absolute;right:44px;bottom:65px;width:280px;height:76px;padding:0;margin:0;font-size:24px;border-radius:999px}
+  .last .wrap{padding-inline:35px}
+  .panel{position:relative;min-height:645px;padding:64px 64px 20px;gap:47px}
+  .clabel{font-size:14px;letter-spacing:.14em;line-height:1.5}
+  .chead{font-size:80px;line-height:1;max-width:761px}
+  .cline{margin-top:auto;font-size:19px;line-height:1.5;margin-bottom:-39px}
+  .csub{font-size:16px;line-height:1.5}
+  .panel .btn.dark{position:absolute;right:38px;bottom:57px;width:238px;height:76px;padding:0;margin:0;font-size:28px;border-radius:999px}
+  footer{font-size:13.5px}
 }
 .panel .btn.dark{margin-top:10px}
 footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.85;font-size:15px;padding:22px 4px 10px}
