@@ -70,6 +70,7 @@ h1{font-size:clamp(42px,5vw,72px);margin-bottom:22px}
 .grid{display:grid;gap:24px}
 .g4{grid-template-columns:repeat(4,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
+.g5{grid-template-columns:repeat(5,1fr);gap:18px}
 .tile{width:100%;object-fit:cover;border-radius:22px;background:var(--tile);box-shadow:0 8px 24px rgba(0,20,80,.18)}
 .v916{aspect-ratio:9/16}
 .v169{aspect-ratio:16/9}
@@ -124,6 +125,7 @@ footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.8
   .arow{flex-direction:column;align-items:flex-start;gap:32px}
   .face{flex:none;width:min(365px,100%)}
   .cards{grid-template-columns:repeat(2,1fr)}
+  .g5{grid-template-columns:repeat(3,1fr)}
   .links{display:none}
 }
 /* phone */
@@ -141,7 +143,7 @@ footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.8
   .hv2{left:185px;top:90px;width:150px;height:270px}
   .badge{left:170px;top:330px;width:96px;height:96px}
   .badge b{font-size:36px}
-  .g4,.g3{grid-template-columns:repeat(2,1fr);gap:12px}
+  .g4,.g3,.g5{grid-template-columns:repeat(2,1fr);gap:12px}
   .case{flex-direction:column;align-items:center;gap:24px}
   .cvid{flex:none}
   .cv{width:230px}
