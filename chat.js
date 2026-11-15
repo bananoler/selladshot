@@ -4,34 +4,40 @@
     title:'SellAdShot Assistent',sub:'Antworten sofort · Denys meldet sich persönlich',
     open:'Chat öffnen',close:'Chat schließen',ph:'Frage stellen …',send:'Nachricht senden',label:'Nachricht',
     greet:'Hallo und willkommen bei SellAdShot! Wie kann ich dir helfen?',
-    chips:[['price','Was kostet ein Werbevideo?'],['addons','Wie berechnet man Add-ons?'],['process','Wie läuft ein Projekt ab?'],['quote','Angebot anfragen']],
+    chips:[['price','Was kostet ein Werbevideo?'],['addons','Wie berechnet man Add-ons?'],['process','Wie läuft ein Projekt ab?'],['quote','Frage an Denys / Angebot']],
     a:{
       price:'Reels, TikToks und KI-Avatar-Videos starten ab 55 € pro Video, ein Paket mit 10 Videos ab 500 €. KI-Werbe- und Erklärvideos starten bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Den Endpreis nenne ich dir nach der Konzepterstellung.',
       addons:'Add-ons berechne ich nach Komplexität, jeder Fall wird einzeln betrachtet. Die genannten Preise sind Startpreise. Den Endpreis nenne ich dir nach der Konzepterstellung.',
       process:'Du schilderst mir kurz dein Produkt und dein Ziel. Ich erstelle ein Konzept und nenne dir den Preis. Nach deiner Freigabe produziere ich das Video.',
-      quote:'Gern. Schreib mir kurz, worum es geht, dann erstelle ich dir ein Konzept und nenne dir den Preis.',
-      fallback:'Dazu antwortet dir Denys am besten persönlich. Du erreichst ihn hier:'
+      quote:'Gern. Schreib deine Frage oder kurz dein Vorhaben, Denys antwortet dir persönlich per E-Mail.',
+      fallback:'Dazu antwortet dir Denys am besten persönlich. Schreib hier deine Frage:',
+      sent:'Danke, deine Nachricht ist angekommen. Denys meldet sich in der Regel am selben Tag per E-Mail.',
+      fail:'Das hat leider nicht geklappt. Bitte schreib direkt per WhatsApp oder E-Mail:'
     },
+    fq:'Deine Frage',fm:'Deine E-Mail',fc:'Ich bin einverstanden, dass meine Angaben zur Beantwortung per E-Mail übermittelt werden.',fs:'Absenden',fsending:'Wird gesendet …',ferr:'Bitte Frage, E-Mail und Einverständnis angeben.',
     wa:'Per WhatsApp schreiben',mail:'Per E-Mail schreiben',
     mailSubject:'Anfrage Werbevideo',
-    foot:'Automatischer Assistent, es werden keine Daten gespeichert. ',priv:'Datenschutz',privHref:'/datenschutz'
+    foot:'Automatischer Assistent. Nachrichten an Denys gehen per E-Mail. ',priv:'Datenschutz',privHref:'/datenschutz'
   }:{
     title:'SellAdShot Assistant',sub:'Instant answers · Denys replies personally',
     open:'Open chat',close:'Close chat',ph:'Ask a question …',send:'Send message',label:'Message',
     greet:'Hello and welcome to SellAdShot! How can I help you?',
-    chips:[['price','How much does a video cost?'],['addons','How are add-ons priced?'],['process','How does a project work?'],['quote','Request a quote']],
+    chips:[['price','How much does a video cost?'],['addons','How are add-ons priced?'],['process','How does a project work?'],['quote','Ask Denys / quote']],
     a:{
       price:'Reels, TikToks and AI avatar videos start from €55 per video, a pack of 10 videos from €500. AI ad and explainer videos start at €100 (10 seconds) or €500 (60 seconds). These are starting prices. I will give you the final price after the concept is drafted.',
       addons:'Add-ons are priced by complexity, and each case is reviewed individually. The prices shown are starting prices. I will give you the final price after the concept is drafted.',
       process:'You briefly tell me about your product and goal. I draft a concept and give you the price. Once you approve it, I produce the video.',
-      quote:'Happy to. Tell me briefly what it is about, and I will draft a concept and send you the price.',
-      fallback:'Denys can answer that best in person. You can reach him here:'
+      quote:'Happy to. Write your question or a short description of your project, and Denys will reply personally by e-mail.',
+      fallback:'Denys can answer that best in person. Write your question here:',
+      sent:'Thank you, your message has arrived. Denys usually replies by e-mail the same day.',
+      fail:'Sorry, that did not work. Please write directly via WhatsApp or e-mail:'
     },
+    fq:'Your question',fm:'Your e-mail',fc:'I agree that my details are sent by e-mail so my question can be answered.',fs:'Send',fsending:'Sending …',ferr:'Please enter a question, an e-mail and your consent.',
     wa:'Message on WhatsApp',mail:'Write an e-mail',
     mailSubject:'Video enquiry',
-    foot:'Automated assistant, no data is stored. ',priv:'Privacy',privHref:'/datenschutz'
+    foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/datenschutz'
   };
-  var WA='https://wa.me/4917663444890',MAIL='denys@selladshot.com';
+  var WA='https://wa.me/4917663444890',MAIL='denys@selladshot.com',KEY='WEB3FORMS_ACCESS_KEY';
   var RX=[
     ['addons',/add-?on|zusatz|extra|aufpreis/i],
     ['price',/kost|preis|prices?|cost|how much|wieviel|wie viel|€|euro|tarif|rate/i],
@@ -75,6 +81,36 @@
     var b=el('a','sas-lk',T.mail);b.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSubject);
     w.appendChild(a);w.appendChild(b);log.appendChild(w);
   }
+  function ask2(){
+    if(KEY==='WEB3FORMS_ACCESS_KEY'){links();showChips();return;}
+    var f=el('form','sas-card');f.noValidate=true;
+    var l1=el('label','sas-lb',T.fq);l1.setAttribute('for','sas-q');
+    var q=el('textarea','sas-ta');q.id='sas-q';q.rows=3;q.maxLength=1500;
+    var l2=el('label','sas-lb',T.fm);l2.setAttribute('for','sas-em');
+    var em=el('input','sas-in sas-em');em.id='sas-em';em.type='email';em.autocomplete='email';em.maxLength=120;
+    var cl=el('label','sas-ck');var cb=el('input');cb.type='checkbox';cl.appendChild(cb);cl.appendChild(el('span',null,T.fc));
+    var hp=el('input');hp.type='checkbox';hp.name='botcheck';hp.tabIndex=-1;hp.setAttribute('aria-hidden','true');hp.style.display='none';
+    var er=el('div','sas-er');er.setAttribute('role','alert');
+    var go=el('button','sas-go',T.fs);go.type='submit';
+    [l1,q,l2,em,cl,hp,er,go].forEach(function(n){f.appendChild(n);});
+    f.addEventListener('submit',function(e){
+      e.preventDefault();er.textContent='';
+      var qv=q.value.trim(),ev=em.value.trim();
+      if(!qv||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ev)||!cb.checked){er.textContent=T.ferr;return;}
+      if(hp.checked)return;
+      go.disabled=true;go.textContent=T.fsending;
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:KEY,subject:'SellAdShot Chat ('+(de?'DE':'EN')+')',from_name:'SellAdShot Chat',email:ev,replyto:ev,message:qv})})
+      .then(function(r){return r.json();})
+      .then(function(j){
+        if(!j.success)throw new Error('x');
+        f.parentNode.removeChild(f);msg('me',qv);msg('bot',T.a.sent);showChips();
+      }).catch(function(){
+        f.parentNode.removeChild(f);msg('bot',T.a.fail);links();showChips();
+      });
+    });
+    log.appendChild(f);scroll();q.focus();
+  }
   function showChips(){
     chips.innerHTML='';
     T.chips.forEach(function(c){
@@ -86,8 +122,8 @@
   }
   function answer(key){
     if(chips.parentNode)chips.parentNode.removeChild(chips);
-    if(key==='fallback'){msg('bot',T.a.fallback);links();}
-    else{msg('bot',T.a[key]);if(key==='quote')links();}
+    if(key==='fallback'||key==='quote'){msg('bot',T.a[key]);ask2();return;}
+    msg('bot',T.a[key]);
     showChips();
   }
   function ask(key,label){
