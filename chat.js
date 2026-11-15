@@ -15,7 +15,7 @@
       fail:'Das hat leider nicht geklappt. Bitte schreib direkt per WhatsApp oder E-Mail:'
     },
     fq:'Deine Frage',fm:'Deine E-Mail',fc:'Ich bin einverstanden, dass meine Angaben zur Beantwortung per E-Mail übermittelt werden.',fs:'Absenden',fsending:'Wird gesendet …',ferr:'Bitte Frage, E-Mail und Einverständnis angeben.',
-    wa:'Per WhatsApp schreiben',mail:'Per E-Mail schreiben',
+    wa:'Per WhatsApp schreiben',mail:'E-Mail-Adresse kopieren',copied:'Kopiert: ',
     mailSubject:'Anfrage Werbevideo',
     foot:'Automatischer Assistent. Nachrichten an Denys gehen per E-Mail. ',priv:'Datenschutz',privHref:'/datenschutz'
   }:{
@@ -33,7 +33,7 @@
       fail:'Sorry, that did not work. Please write directly via WhatsApp or e-mail:'
     },
     fq:'Your question',fm:'Your e-mail',fc:'I agree that my details are sent by e-mail so my question can be answered.',fs:'Send',fsending:'Sending …',ferr:'Please enter a question, an e-mail and your consent.',
-    wa:'Message on WhatsApp',mail:'Write an e-mail',
+    wa:'Message on WhatsApp',mail:'Copy e-mail address',copied:'Copied: ',
     mailSubject:'Video enquiry',
     foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/datenschutz'
   };
@@ -78,7 +78,12 @@
   function links(){
     var w=el('div','sas-links');
     var a=el('a','sas-lk wa',T.wa);a.href=WA;a.target='_blank';a.rel='noopener';
-    var b=el('a','sas-lk',T.mail);b.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSubject);
+    var b=el('button','sas-lk',T.mail);b.type='button';
+    b.addEventListener('click',function(){
+      function done(){b.textContent=T.copied+MAIL;}
+      function manual(){b.textContent=MAIL;var r=document.createRange();r.selectNodeContents(b);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(MAIL).then(done,manual);}else{manual();}
+    });
     w.appendChild(a);w.appendChild(b);log.appendChild(w);
   }
   function ask2(){
