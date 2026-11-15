@@ -35,7 +35,7 @@
     fq:'Your question',fm:'Your e-mail',fc:'I agree that my details are sent by e-mail so my question can be answered.',fs:'Send',fsending:'Sending …',ferr:'Please enter a question, an e-mail and your consent.',
     call:'Call',wa:'Message on WhatsApp',mail:'Copy e-mail address',copied:'Copied: ',
     mailSubject:'Video enquiry',
-    foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/datenschutz'
+    foot:'Automated assistant. Messages to Denys are sent by e-mail. ',priv:'Privacy',privHref:'/privacy'
   };
   var WA='https://wa.me/4917663444890',MAIL='denys@selladshot.com';
   var RX=[
