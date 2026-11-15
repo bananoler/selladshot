@@ -160,6 +160,7 @@ footer{display:flex;justify-content:space-between;gap:16px;color:#fff;opacity:.8
 @media (max-width:640px){
   .wrap{padding-inline:var(--gut);padding-right:max(20px,env(safe-area-inset-right,0px))}
   section,header.hero{padding-block:48px}
+  h1{font-size:min(56px,14.2vw);line-height:1}
   .topbar{--tbh:59px;--tp:14px}
   header.hero{padding-top:107px}
   .navcta{display:none}
