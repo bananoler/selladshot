@@ -9,6 +9,10 @@ if('IntersectionObserver' in window){
 // only one video with controls plays at a time
 var all=[].slice.call(document.querySelectorAll('video[controls]'));
 all.forEach(function(v){v.addEventListener('play',function(){all.forEach(function(o){if(o!==v)o.pause();});});});
+var bg=document.querySelector('.burger'),mm=document.getElementById('mmenu');
+if(bg&&mm){var set=function(o){mm.classList.toggle('open',o);bg.setAttribute('aria-expanded',o);};
+bg.addEventListener('click',function(){set(!mm.classList.contains('open'));});
+mm.addEventListener('click',function(e){if(e.target.tagName==='A')set(false);});}
 var tb=document.getElementById('topbar');
 if(tb){var upd=function(){tb.classList.toggle('scrolled',(window.pageYOffset||0)>8);};upd();window.addEventListener('scroll',upd,{passive:true});}
 })();
