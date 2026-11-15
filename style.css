@@ -1,10 +1,10 @@
-@font-face{font-family:Syne;font-weight:700;font-display:swap;src:url(fonts/syne-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:Syne;font-weight:800;font-display:swap;src:url(fonts/syne-latin-800-normal.woff2) format("woff2")}
-@font-face{font-family:Manrope;font-weight:400;font-display:swap;src:url(fonts/manrope-latin-400-normal.woff2) format("woff2")}
-@font-face{font-family:Manrope;font-weight:500;font-display:swap;src:url(fonts/manrope-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:Manrope;font-weight:600;font-display:swap;src:url(fonts/manrope-latin-600-normal.woff2) format("woff2")}
-@font-face{font-family:Manrope;font-weight:700;font-display:swap;src:url(fonts/manrope-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:Manrope;font-weight:800;font-display:swap;src:url(fonts/manrope-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Syne;font-weight:700;font-display:swap;src:url(syne-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Syne;font-weight:800;font-display:swap;src:url(syne-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:400;font-display:swap;src:url(manrope-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:500;font-display:swap;src:url(manrope-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:600;font-display:swap;src:url(manrope-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:700;font-display:swap;src:url(manrope-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:800;font-display:swap;src:url(manrope-latin-800-normal.woff2) format("woff2")}
 
 :root{
   --navy:#0e2a5c;--navy2:#25406e;--orange:#ff6b1a;--rust:#c2410c;--ice:#eaf3fd;--soft:#f4f7fb;--tile:#16356f;
