@@ -26,7 +26,7 @@
     a:{
       price:'Thank you for asking! I\'d be happy to help: Reels, TikToks and AI avatar videos start from €55 per video, or €500 for a pack of 10. AI ad and explainer videos start at €100 (10 seconds) or €500 (60 seconds). These are starting prices. Once I\'ve put together your concept, I\'ll gladly confirm the exact price.',
       addons:'Great question, thank you! Add-ons are priced by complexity, and I look at every case individually to make sure you get a fair price. The prices shown are starting prices, and I\'ll confirm your final price as soon as your concept is ready.',
-      process:'Absolutely, I\'d love to walk you through it! First, please let me know a little about your product and your goal. Then I\'d prepare a concept for you. I\'d share the final price before we start, and we agree on that final price together. Once you\'re happy with everything, I\'ll take care of producing your video.',
+      process:'Absolutely, I\'d love to walk you through it! First, please let me know a little about your product and your goal. Then I\'d prepare a concept for you. I\'d share the final price before we start, and we would agree on it together. Once you\'re happy with everything, I\'ll take care of producing your video.',
       quote:'I\'d be delighted to help! Please share your question or a few words about your project, and Denys will personally get back to you by e-mail.',
       fallback:'That\'s a great question for Denys himself, and he\'d be happy to help personally. Please write your question here:',
       sent:'Thank you so much for your message! Denys will get back to you by e-mail, usually on the same day. Is there anything else I can help you with in the meantime?',
