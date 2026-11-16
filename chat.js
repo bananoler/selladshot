@@ -3,16 +3,16 @@
   var T=de?{
     title:'SellAdShot Assistent',sub:'Antworten sofort · Denys meldet sich persönlich',
     open:'Chat öffnen',close:'Chat schließen',ph:'Frage stellen …',send:'Nachricht senden',label:'Nachricht',
-    greet:'Hallo und willkommen bei SellAdShot! Wie kann ich dir helfen?',
+    greet:'Hallo und herzlich willkommen bei SellAdShot! Wie kann ich dir weiterhelfen?',
     chips:[['price','Was kostet ein Werbevideo?'],['addons','Wie berechnet man Add-ons?'],['process','Wie läuft ein Projekt ab?'],['quote','Frage an Denys / Angebot']],
     a:{
-      price:'Reels, TikToks und KI-Avatar-Videos starten ab 55 € pro Video, ein Paket mit 10 Videos ab 500 €. KI-Werbe- und Erklärvideos starten bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Den Endpreis nenne ich dir nach der Konzepterstellung.',
-      addons:'Add-ons berechne ich nach Komplexität, jeder Fall wird einzeln betrachtet. Die genannten Preise sind Startpreise. Den Endpreis nenne ich dir nach der Konzepterstellung.',
-      process:'Du schilderst mir kurz dein Produkt und dein Ziel. Ich erstelle ein Konzept und nenne dir den Preis. Nach deiner Freigabe produziere ich das Video.',
-      quote:'Gern. Schreib deine Frage oder kurz dein Vorhaben, Denys antwortet dir persönlich per E-Mail.',
-      fallback:'Dazu antwortet dir Denys am besten persönlich. Schreib hier deine Frage:',
-      sent:'Danke, deine Nachricht ist angekommen. Denys meldet sich in der Regel am selben Tag per E-Mail.',
-      fail:'Das hat leider nicht geklappt. Bitte schreib direkt per WhatsApp oder E-Mail:'
+      price:'Gern gebe ich dir einen Überblick: Reels, TikToks und KI-Avatar-Videos beginnen bei 55 € pro Video, ein Paket mit 10 Videos bei 500 €. KI-Werbe- und Erklärvideos beginnen bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Den Endpreis nenne ich dir gern, sobald das Konzept erstellt ist.',
+      addons:'Gute Frage! Add-ons berechne ich nach Komplexität und prüfe jeden Fall einzeln. Die genannten Preise sind Startpreise. Den Endpreis nenne ich dir gern nach der Konzepterstellung.',
+      process:'Das ist ganz unkompliziert: Du erzählst mir kurz von deinem Produkt und deinem Ziel. Daraufhin erstelle ich ein passendes Konzept und nenne dir den Preis. Sobald du das Konzept freigibst, setze ich das Video für dich um.',
+      quote:'Sehr gern! Schreib mir einfach deine Frage oder kurz dein Vorhaben. Denys meldet sich persönlich per E-Mail bei dir.',
+      fallback:'Das beantwortet dir Denys am besten persönlich. Schreib mir gern hier deine Frage:',
+      sent:'Vielen Dank für deine Nachricht! Denys meldet sich in der Regel noch am selben Tag per E-Mail bei dir.',
+      fail:'Das hat leider nicht geklappt. Bitte schreib Denys gern direkt per WhatsApp oder E-Mail:'
     },
     fq:'Deine Frage',fm:'Deine E-Mail',fc:'Ich bin einverstanden, dass meine Angaben zur Beantwortung per E-Mail übermittelt werden.',fs:'Absenden',fsending:'Wird gesendet …',ferr:'Bitte Frage, E-Mail und Einverständnis angeben.',
     call:'Anrufen',wa:'Per WhatsApp schreiben',mail:'E-Mail-Adresse kopieren',copied:'Kopiert: ',
@@ -21,16 +21,16 @@
   }:{
     title:'SellAdShot Assistant',sub:'Instant answers · Denys replies personally',
     open:'Open chat',close:'Close chat',ph:'Ask a question …',send:'Send message',label:'Message',
-    greet:'Hello and welcome to SellAdShot! How can I help you?',
+    greet:'Hello and a warm welcome to SellAdShot! How may I help you today?',
     chips:[['price','How much does a video cost?'],['addons','How are add-ons priced?'],['process','How does a project work?'],['quote','Ask Denys / quote']],
     a:{
-      price:'Reels, TikToks and AI avatar videos start from €55 per video, a pack of 10 videos from €500. AI ad and explainer videos start at €100 (10 seconds) or €500 (60 seconds). These are starting prices. I will give you the final price after the concept is drafted.',
-      addons:'Add-ons are priced by complexity, and each case is reviewed individually. The prices shown are starting prices. I will give you the final price after the concept is drafted.',
-      process:'You briefly tell me about your product and goal. I draft a concept and give you the price. Once you approve it, I produce the video.',
-      quote:'Happy to. Write your question or a short description of your project, and Denys will reply personally by e-mail.',
-      fallback:'Denys can answer that best in person. Write your question here:',
-      sent:'Thank you, your message has arrived. Denys usually replies by e-mail the same day.',
-      fail:'Sorry, that did not work. Please write directly via WhatsApp or e-mail:'
+      price:'Happy to give you an overview: Reels, TikToks and AI avatar videos start from €55 per video, and a pack of 10 videos from €500. AI ad and explainer videos start at €100 (10 seconds) or €500 (60 seconds). These are starting prices, and I will gladly confirm the final price once the concept is drafted.',
+      addons:'Good question! Add-ons are priced by complexity, and I review each case individually. The prices shown are starting prices, and I will gladly confirm the final price after the concept is drafted.',
+      process:'It is quite straightforward: you tell me a little about your product and your goal. I then prepare a concept and let you know the price. Once you have approved the concept, I will gladly produce the video for you.',
+      quote:'Certainly! Please share your question or a short description of your project, and Denys will reply to you personally by e-mail.',
+      fallback:'Denys can answer that best in person. Please feel free to write your question here:',
+      sent:'Thank you for your message! Denys usually replies by e-mail on the same day.',
+      fail:'I am sorry, that did not work. Please feel free to contact Denys directly via WhatsApp or e-mail:'
     },
     fq:'Your question',fm:'Your e-mail',fc:'I agree that my details are sent by e-mail so my question can be answered.',fs:'Send',fsending:'Sending …',ferr:'Please enter a question, an e-mail and your consent.',
     call:'Call',wa:'Message on WhatsApp',mail:'Copy e-mail address',copied:'Copied: ',
