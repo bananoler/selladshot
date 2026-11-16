@@ -8,7 +8,7 @@
     a:{
       price:'Vielen Dank für deine Frage! Sehr gern: Reels, TikToks und KI-Avatar-Videos beginnen bei 55 € pro Video, ein Paket mit 10 Videos bei 500 €. KI-Werbe- und Erklärvideos beginnen bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Sobald dein Konzept steht, nenne ich dir gern den genauen Preis.',
       addons:'Eine sehr gute Frage, vielen Dank! Add-ons berechne ich nach Komplexität und prüfe jeden Fall einzeln, damit du einen fairen Preis erhältst. Die genannten Preise sind Startpreise. Den Endpreis nenne ich dir, sobald dein Konzept erstellt ist.',
-      process:'Sehr gern erkläre ich dir den Ablauf! Zuerst teile mir bitte kurz mit, worum es bei deinem Produkt und deinem Ziel geht. Danach bereite ich gern ein Konzept für dich vor und nenne dir den Preis. Sobald du damit zufrieden bist, kümmere ich mich um die Umsetzung deines Videos.',
+      process:'Sehr gern erkläre ich dir den Ablauf! Zuerst teile mir bitte kurz mit, worum es bei deinem Produkt und deinem Ziel geht. Danach bereite ich gern ein Konzept für dich vor. Den finalen Preis nenne ich dir, bevor wir starten, und wir einigen uns gemeinsam darauf. Sobald alles für dich passt, kümmere ich mich um die Umsetzung deines Videos.',
       quote:'Sehr gern, ich helfe dir mit Freude! Schreib mir einfach deine Frage oder ein paar Worte zu deinem Vorhaben, Denys meldet sich persönlich per E-Mail bei dir.',
       fallback:'Das beantwortet dir Denys am liebsten persönlich. Schreib mir gern hier deine Frage:',
       sent:'Vielen herzlichen Dank für deine Nachricht! Denys meldet sich in der Regel noch am selben Tag per E-Mail bei dir. Kann ich dir in der Zwischenzeit noch weiterhelfen?',
@@ -26,7 +26,7 @@
     a:{
       price:'Thank you for asking! I\'d be happy to help: Reels, TikToks and AI avatar videos start from €55 per video, or €500 for a pack of 10. AI ad and explainer videos start at €100 (10 seconds) or €500 (60 seconds). These are starting prices. Once I\'ve put together your concept, I\'ll gladly confirm the exact price.',
       addons:'Great question, thank you! Add-ons are priced by complexity, and I look at every case individually to make sure you get a fair price. The prices shown are starting prices, and I\'ll confirm your final price as soon as your concept is ready.',
-      process:'Absolutely, I\'d love to walk you through it! First, please let me know a little about your product and your goal. Then I\'d prepare a concept for you and share the price. Once you\'re happy with it, I\'ll take care of producing your video.',
+      process:'Absolutely, I\'d love to walk you through it! First, please let me know a little about your product and your goal. Then I\'d prepare a concept for you. I\'d share the final price before we start, and we agree on that final price together. Once you\'re happy with everything, I\'ll take care of producing your video.',
       quote:'I\'d be delighted to help! Please share your question or a few words about your project, and Denys will personally get back to you by e-mail.',
       fallback:'That\'s a great question for Denys himself, and he\'d be happy to help personally. Please write your question here:',
       sent:'Thank you so much for your message! Denys will get back to you by e-mail, usually on the same day. Is there anything else I can help you with in the meantime?',
