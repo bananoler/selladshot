@@ -3,16 +3,16 @@
   var T=de?{
     title:'SellAdShot Assistent',sub:'Antworten sofort · Denys meldet sich persönlich',
     open:'Chat öffnen',close:'Chat schließen',ph:'Frage stellen …',send:'Nachricht senden',label:'Nachricht',
-    greet:'Hallo und herzlich willkommen bei SellAdShot! Schön, dass du vorbeischaust. Wie kann ich dir heute weiterhelfen?',
+    greet:'Hallo und herzlich willkommen bei SellAdShot! Schön, dass Du vorbeischaust. Wie kann ich Dir heute weiterhelfen?',
     chips:[['price','Was kostet ein Werbevideo?'],['addons','Wie berechnet man Add-ons?'],['process','Wie läuft ein Projekt ab?'],['quote','Frage an Denys / Angebot']],
     a:{
-      price:'Vielen Dank für deine Frage! Sehr gern: Reels, TikToks und KI-Avatar-Videos beginnen bei 55 € pro Video, ein Paket mit 10 Videos bei 500 €. KI-Werbe- und Erklärvideos beginnen bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Sobald dein Konzept steht, nenne ich dir gern den genauen Preis.',
-      addons:'Eine sehr gute Frage, vielen Dank! Add-ons berechne ich nach Komplexität und prüfe jeden Fall einzeln, damit du einen fairen Preis erhältst. Die genannten Preise sind Startpreise. Den Endpreis nenne ich dir, sobald dein Konzept erstellt ist.',
-      process:'Sehr gern erkläre ich dir den Ablauf! Zuerst teile mir bitte kurz mit, worum es bei deinem Produkt und deinem Ziel geht. Danach bereite ich gern ein Konzept für dich vor. Den finalen Preis nenne ich dir, bevor wir starten, und wir stimmen das Endergebnis gemeinsam ab. Sobald alles für dich passt, kümmere ich mich um die Umsetzung deines Videos.',
-      quote:'Sehr gern, ich helfe dir mit Freude! Schreib mir einfach deine Frage oder ein paar Worte zu deinem Vorhaben, Denys meldet sich persönlich per E-Mail bei dir.',
-      fallback:'Das beantwortet dir Denys am liebsten persönlich. Schreib mir gern hier deine Frage:',
-      sent:'Vielen herzlichen Dank für deine Nachricht! Denys meldet sich in der Regel noch am selben Tag per E-Mail bei dir. Kann ich dir in der Zwischenzeit noch weiterhelfen?',
-      fail:'Das tut mir leid, die Nachricht konnte leider nicht gesendet werden. Bitte kontaktiere Denys direkt per WhatsApp oder E-Mail, er hilft dir gern weiter:'
+      price:'Vielen Dank für Deine Frage! Sehr gern: Reels, TikToks und KI-Avatar-Videos beginnen bei 55 € pro Video, ein Paket mit 10 Videos bei 500 €. KI-Werbe- und Erklärvideos beginnen bei 100 € (10 Sekunden) bzw. 500 € (60 Sekunden). Das sind Startpreise. Sobald Dein Konzept steht, nenne ich Dir gern den genauen Preis.',
+      addons:'Eine sehr gute Frage, vielen Dank! Add-ons berechne ich nach Komplexität und prüfe jeden Fall einzeln, damit Du einen fairen Preis erhältst. Die genannten Preise sind Startpreise. Den Endpreis nenne ich Dir, sobald Dein Konzept erstellt ist.',
+      process:'Sehr gern erkläre ich Dir den Ablauf! Zuerst teile mir bitte kurz mit, worum es bei Deinem Produkt und Deinem Ziel geht. Danach bereite ich gern ein Konzept für Dich vor. Den finalen Preis nenne ich Dir, bevor wir starten, und wir stimmen das Endergebnis gemeinsam ab. Sobald alles für Dich passt, kümmere ich mich um die Umsetzung Deines Videos.',
+      quote:'Sehr gern, ich helfe Dir mit Freude! Schreib mir einfach Deine Frage oder ein paar Worte zu Deinem Vorhaben, Denys meldet sich persönlich per E-Mail bei Dir.',
+      fallback:'Das beantwortet Dir Denys am liebsten persönlich. Schreib mir gern hier Deine Frage:',
+      sent:'Vielen herzlichen Dank für Deine Nachricht! Denys meldet sich in der Regel noch am selben Tag per E-Mail bei Dir. Kann ich Dir in der Zwischenzeit noch weiterhelfen?',
+      fail:'Das tut mir leid, die Nachricht konnte leider nicht gesendet werden. Bitte kontaktiere Denys direkt per WhatsApp oder E-Mail, er hilft Dir gern weiter:'
     },
     fq:'Deine Frage',fm:'Deine E-Mail',fc:'Ich bin einverstanden, dass meine Angaben zur Beantwortung per E-Mail übermittelt werden.',fs:'Absenden',fsending:'Wird gesendet …',ferr:'Bitte Frage, E-Mail und Einverständnis angeben.',
     call:'Anrufen',wa:'Per WhatsApp schreiben',mail:'E-Mail-Adresse kopieren',copied:'Kopiert: ',
