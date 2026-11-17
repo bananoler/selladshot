@@ -115,10 +115,10 @@
         .then(function(r){clearTimeout(t2);return r.json();},function(e){clearTimeout(t2);if(e&&e.name==='AbortError')return {success:'true'};throw e;});})
       .then(function(j){
         if(String(j.success)!=='true')throw new Error('x');
-        f.parentNode.removeChild(f);msg('me',qv);msg('bot',T.a.sent);showChips();
       }).catch(function(){
-        f.parentNode.removeChild(f);msg('bot',T.a.fail);links();showChips();
+        msg('bot',T.a.fail);links();
       });
+      f.parentNode.removeChild(f);msg('me',qv);msg('bot',T.a.sent);showChips();
     });
     log.appendChild(f);scroll();q.focus();
   }

@@ -131,7 +131,7 @@ function contact(){
     e.preventDefault();S.name=n.value.trim();S.email=m.value.trim();er.textContent='';
     if(!S.name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.email)||!cb.checked){er.textContent=T.err;return;}
     if(hp.checked)return;
-    var go=nv.querySelector('.sap-next'),est=estimate();go.disabled=true;go.textContent=T.sending;
+    var est=estimate();
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
     var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
@@ -152,11 +152,13 @@ function contact(){
       return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
       .then(function(r){clearTimeout(to);if(r.ok)return;return r.json().then(function(j){throw new Error('own '+r.status+(j&&j.detail?' '+j.detail:''));},function(){throw new Error('own '+r.status);});},function(e){clearTimeout(to);throw e;});
     }
+    S.step=5;render();
     var ownWhy='';own().catch(function(e){ownWhy='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));
       // backup route: FormSubmit delivers but often answers slowly, so a timeout there still counts as sent
       return ajax().catch(function(){if(why==='timeout')return;throw e;});})
-    .then(function(){S.step=5;render();})
-    .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;why=ownWhy||why;er.textContent=T.fail+' ['+why+']';var mb=document.createElement('a');mb.className='sap-skip';mb.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSub)+'&body='+encodeURIComponent(msg.replace(/ \| /g,'\n'));mb.textContent=de?'Per E-Mail-Programm senden':'Send with your mail app';er.appendChild(document.createElement('br'));er.appendChild(mb);});
+    .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);why=ownWhy||why;
+      var box=document.getElementById('sap-fail');if(!box)return;box.textContent=T.fail+' ['+why+'] ';
+      var mb=document.createElement('a');mb.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSub)+'&body='+encodeURIComponent(msg.replace(/ \| /g,'\n'));mb.textContent=de?'Per E-Mail-Programm senden':'Send with your mail app';mb.style.textDecoration='underline';box.appendChild(mb);box.hidden=false;});
   };
   dlg.appendChild(f);
 }
@@ -173,6 +175,7 @@ function done(){
   dlg.appendChild(el('p','sap-lead',T.doneLead.replace('{mail}',S.email)));
   var b=el('div','sap-est');b.appendChild(el('div','lb',T.est));b.appendChild(el('div','pr',e.text));
   e.notes.forEach(function(x){b.appendChild(el('p','',x));});b.appendChild(el('p','',T.estNote));dlg.appendChild(b);
+  var fb=el('div','sap-er');fb.id='sap-fail';fb.hidden=true;fb.setAttribute('role','alert');dlg.appendChild(fb);
   var n=el('div','sap-nav'),c=el('button','sap-next',T.close2);c.type='button';c.onclick=close;n.appendChild(c);dlg.appendChild(n);
 }
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn');if(a)open(e);});
