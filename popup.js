@@ -17,7 +17,7 @@ var T=de?{
  per:' pro Video',from:'ab ',long:'Bei längeren Videos nenne ich den genauen Preis im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',pack:'Das ist der Preis für ein Video. Für die genaue Anzahl und einen Paketpreis meldet sich Denys persönlich bei dir.',ten:'Ab 10 Videos gibt es ein Paket ab €500.',per10:' pro 10 Sekunden',month:'Monatliche Betreuung mit regelmäßigen Videos. Umfang und Preis lege ich im Konzept fest.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
  unsure:'Ich empfehle dir im Konzept das passende Format.',close2:'Fertig',
  mailSub:'SellAdShot Anfrage (DE)',
- auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Ich melde mich in Kürze bei dir.\n\nWenn du Fragen hast, kannst du einfach auf diese E-Mail antworten. Du kannst mir auch gern weitere Dateien und Materialien schicken, zum Beispiel dein Logo, deine Social-Media-Kanäle, deine Website oder Beispielvideos. Das hilft mir bei der Erstellung deines Konzepts.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
+ auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Ich melde mich in Kürze bei dir.\n\nWenn du Fragen hast, kannst du einfach auf diese E-Mail antworten. Du kannst mir auch gern weitere Dateien und Materialien schicken, zum Beispiel dein Logo, deine Social-Media-Kanäle, deine Website oder Beispielvideos. Das hilft mir bei der Erstellung deines Konzepts.\n\nErste Einschätzung: {est}\n\nDenys\nSellAdShot',
  lang:'de-DE'
 }:{
  of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Estimate',sending:'Sending …',
@@ -36,7 +36,7 @@ var T=de?{
  per:' per video',from:'from ',long:'For longer videos I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',pack:'This is the price for one video. For the exact number and a package price, Denys will get back to you personally.',ten:'From 10 videos there is a package from €500.',per10:' per 10 seconds',month:'Monthly support with regular videos. I will set scope and price in the concept.',multi:'Several platforms add cut-downs.',
  unsure:'In the concept I will recommend the right format.',close2:'Done',
  mailSub:'SellAdShot enquiry (EN)',
- auto:'Hi {name},\n\nthanks for your enquiry. I will get back to you shortly.\n\nIf you have any questions, just reply to this e-mail. You are also welcome to send more files and materials, such as your logo, social media channels, website or example videos. This helps me put your concept together.\n\nFirst estimate: {est}\n(A guide based on the prices on selladshot.com, not an offer.)\n\nDenys\nSellAdShot',
+ auto:'Hi {name},\n\nthanks for your enquiry. I will get back to you shortly.\n\nIf you have any questions, just reply to this e-mail. You are also welcome to send more files and materials, such as your logo, social media channels, website or example videos. This helps me put your concept together.\n\nFirst estimate: {est}\n\nDenys\nSellAdShot',
  lang:'en-US'
 };
 // price guide from the site's own "from" prices + up to two add-ons
