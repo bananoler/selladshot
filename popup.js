@@ -1,7 +1,7 @@
 (function(){
 var de=/^de/i.test(document.documentElement.lang||''),MAIL='denys@selladshot.com';
 var T=de?{
- of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Preis anzeigen',sending:'Wird gesendet …',
+ of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Erstschätzung',sending:'Wird gesendet …',
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',s:'Mehrere Antworten möglich.',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
