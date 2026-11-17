@@ -147,7 +147,12 @@ function contact(){
       var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},20000);
       return fetch('https://formsubmit.co/'+MAIL,{method:'POST',mode:'no-cors',signal:ac?ac.signal:undefined,body:fd}).then(function(){clearTimeout(to);},function(e){clearTimeout(to);why+=' / plain: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));throw e;});
     }
-    ajax().catch(function(){return plain();})
+    function own(){
+      var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},12000);
+      return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
+      .then(function(r){clearTimeout(to);if(!r.ok)throw new Error('own '+r.status);},function(e){clearTimeout(to);throw e;});
+    }
+    own().catch(function(e){why='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));return ajax();}).catch(function(){return plain();})
     .then(function(){S.step=5;render();})
     .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;er.textContent=T.fail+' ['+why+']';});
   };
