@@ -134,11 +134,15 @@ function contact(){
     var go=nv.querySelector('.sap-next'),est=estimate();go.disabled=true;go.textContent=T.sending;
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
     var msg=[T.q[0].t+' '+pick(0),T.q[1].t+' '+(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),T.q[2].t+' '+pick(2),'',T.idea+':',S.idea||'-','','Estimate: '+est.text].join('\n');
-    var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},20000);
-    fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json',Accept:'application/json'},
-      body:JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',_autoresponse:T.auto.replace('{name}',S.name).replace('{est}',est.text),name:S.name,email:S.email,message:msg})})
-    .then(function(r){return r.json();}).then(function(j){clearTimeout(to);if(String(j.success)!=='true'){if(window.console)console.warn('FormSubmit:',j.message);throw new Error('x');}S.step=5;render();})
-    .catch(function(){clearTimeout(to);go.disabled=false;go.textContent=T.send;er.textContent=T.fail;});
+    var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',_autoresponse:T.auto.replace('{name}',S.name).replace('{est}',est.text),name:S.name,email:S.email,message:msg});
+    function attempt(n){
+      var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},15000);
+      return fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json',Accept:'application/json'},body:body})
+      .then(function(r){return r.json();}).then(function(j){clearTimeout(to);if(String(j.success)!=='true'){if(window.console)console.warn('FormSubmit:',j.message);throw new Error('x');}})
+      .catch(function(err){clearTimeout(to);if(n<2)return new Promise(function(res){setTimeout(res,1500);}).then(function(){return attempt(n+1);});throw err;});
+    }
+    attempt(1).then(function(){S.step=5;render();})
+    .catch(function(){go.disabled=false;go.textContent=T.send;er.textContent=T.fail;});
   };
   dlg.appendChild(f);
 }
