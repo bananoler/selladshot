@@ -25,6 +25,39 @@ function limited(ip) {
   if (hits.size > 2000) for (const [k, v] of hits) if (!v.some((t) => now - t < WINDOW)) hits.delete(k);
   return arr.length > LIMIT;
 }
+// Branded HTML for the price-guide copy sent to the enquirer. `text` is the plain-text version (paragraphs split by blank lines).
+function mailHtml(text) {
+  const de = /^Hallo/.test(text);
+  const paras = text.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+  const sig = paras.pop() || '';
+  const body = paras.map((p, i) => {
+    const e = esc(p).replace(/\n/g, '<br>');
+    if (/^(Erste Einschätzung|First estimate):/.test(p)) {
+      const [first, ...rest] = p.split('\n');
+      const [label, ...val] = first.split(':');
+      return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 18px"><tr><td style="background:#eaf3fd;border-left:4px solid #ff6b1a;border-radius:8px;padding:16px 18px">'
+        + '<div style="font:700 12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0e2a5c;opacity:.7">' + esc(label) + '</div>'
+        + '<div style="font:800 24px Arial,sans-serif;color:#0e2a5c;padding:4px 0 6px">' + esc(val.join(':').trim()) + '</div>'
+        + (rest.length ? '<div style="font:13px/1.5 Arial,sans-serif;color:#4a5878">' + esc(rest.join(' ')) + '</div>' : '')
+        + '</td></tr></table>';
+    }
+    return '<p style="margin:0 0 16px;font:' + (i === 0 ? '700 18px' : '16px') + '/1.55 Arial,sans-serif;color:#0e2a5c">' + e + '</p>';
+  }).join('');
+  const btn = de ? 'Beispiele ansehen' : 'See examples';
+  return '<!doctype html><html><body style="margin:0;padding:0;background:#f4f7fb">'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f7fb"><tr><td align="center" style="padding:24px 12px">'
+    + '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">'
+    + '<tr><td style="background:#0e2a5c;padding:20px 28px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>'
+    + '<td><img src="https://selladshot.com/favicon-192.png" width="36" height="36" alt="" style="display:block;border-radius:8px"></td>'
+    + '<td style="padding-left:12px;font:800 20px Arial,sans-serif;color:#ffffff;letter-spacing:.02em">SellAdShot</td>'
+    + '</tr></table></td></tr>'
+    + '<tr><td style="height:4px;background:#ff6b1a;font-size:0;line-height:0">&nbsp;</td></tr>'
+    + '<tr><td style="padding:28px 28px 8px">' + body
+    + '<p style="margin:8px 0 22px"><a href="https://selladshot.com' + (de ? '/de/' : '/') + '" style="display:inline-block;background:#ff6b1a;color:#ffffff;font:800 14px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:999px">' + btn + '</a></p>'
+    + '<p style="margin:0 0 6px;font:16px/1.5 Arial,sans-serif;color:#0e2a5c">' + esc(sig).replace(/\n/g, '<br>') + '</p></td></tr>'
+    + '<tr><td style="padding:18px 28px 24px;border-top:1px solid #e3e9f2;font:12px/1.5 Arial,sans-serif;color:#7a879f">SellAdShot · Denys Myroniuk · Berlin<br><a href="https://selladshot.com" style="color:#7a879f">selladshot.com</a></td></tr>'
+    + '</table></td></tr></table></body></html>';
+}
 async function send(key, body) {
   const r = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   if (!r.ok) throw new Error('resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
@@ -55,7 +88,7 @@ async function lead(req, env) {
   const from = env.RESEND_FROM || 'SellAdShot <onboarding@resend.dev>';
   try {
     await send(key, { from, to: [TO], reply_to: email, subject, html: '<p><b>' + esc(name) + '</b> &lt;' + esc(email) + '&gt;</p><p style="white-space:pre-line">' + esc(message.replace(/ \| /g, '\n')) + '</p>' });
-    if (env.RESEND_FROM && auto) await send(key, { from, to: [email], reply_to: TO, subject: 'SellAdShot', text: auto }).catch(() => {});
+    if (env.RESEND_FROM && auto) await send(key, { from, to: [email], reply_to: TO, subject: 'SellAdShot', text: auto, html: mailHtml(auto) }).catch(() => {});
     return reply(200, { success: true });
   } catch (e) {
     console.error(e.message);
