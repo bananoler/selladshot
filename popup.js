@@ -3,7 +3,7 @@ var de=/^de/i.test(document.documentElement.lang||''),MAIL='denys@selladshot.com
 var T=de?{
  of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Erstschätzung',sending:'Wird gesendet …',
  q:[
-  {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
+  {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Reels & TikToks','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
   {t:'Wie viele Videos brauchst du?',o:['Ein Video','Mehr als ein Video']},
   {t:'Wie lang soll ein Video sein?',o:['Bis 1 Minute','Ab 1 Minute']}],
@@ -22,7 +22,7 @@ var T=de?{
 }:{
  of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Estimate',sending:'Sending …',
  q:[
-  {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
+  {t:'What can I make for you?',o:['Explainer video','Reels & TikToks','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
   {t:'How many videos do you need?',o:['One video','More than one video']},
   {t:'How long should a video be?',o:['Up to 1 minute','1 minute or longer']}],
