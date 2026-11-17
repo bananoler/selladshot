@@ -20,7 +20,7 @@ var T=de?{
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Dein Konzept bekommst du innerhalb von 3 Stunden.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
  lang:'de-DE'
 }:{
- of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Show price',sending:'Sending …',
+ of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Estimate price',sending:'Sending …',
  q:[
   {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',s:'Several answers possible.',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
