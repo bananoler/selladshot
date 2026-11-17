@@ -192,7 +192,7 @@ function done(){
 }
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn');if(a){mark();open(e);}});
 // opens once on its own after 30 s on the page; not again for 7 days once seen or closed
-var KEY='sap_seen',AUTO_MS=30000,DAYS=7;
+var KEY='sap_seen',AUTO_MS=60000,DAYS=7;
 function seen(){try{var t=+localStorage.getItem(KEY);return t&&Date.now()-t<DAYS*864e5;}catch(e){return false;}}
 function mark(){try{localStorage.setItem(KEY,String(Date.now()));}catch(e){}}
 function auto(){
