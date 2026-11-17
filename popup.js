@@ -135,14 +135,21 @@ function contact(){
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
     var msg=[T.q[0].t+' '+pick(0),T.q[1].t+' '+(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),T.q[2].t+' '+pick(2),'',T.idea+':',S.idea||'-','','Estimate: '+est.text].join('\n');
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
-    function attempt(n){
-      var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},25000);
+    var t0=Date.now(),why='';
+    function ajax(){
+      var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},12000);
       return fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json',Accept:'application/json'},body:body})
-      .then(function(r){return r.json();}).then(function(j){clearTimeout(to);if(String(j.success)!=='true'){if(window.console)console.warn('FormSubmit:',j.message);throw new Error('x');}})
-      .catch(function(err){clearTimeout(to);if(n<2&&!(err&&err.name==='AbortError'))return new Promise(function(res){setTimeout(res,1500);}).then(function(){return attempt(n+1);});throw err;});
+      .then(function(r){why='http '+r.status;return r.json();}).then(function(j){clearTimeout(to);if(String(j.success)!=='true'){why='FormSubmit: '+(j.message||'success=false');throw new Error(why);}})
+      .catch(function(err){clearTimeout(to);if(err&&err.name==='AbortError')why='timeout';else if(!why||why.indexOf('FormSubmit')<0&&why.indexOf('http')<0)why=String(err&&err.message||err);throw err;});
     }
-    attempt(1).then(function(){S.step=5;render();})
-    .catch(function(){go.disabled=false;go.textContent=T.send;er.textContent=T.fail;});
+    function plain(){
+      var fd=new FormData(),o=JSON.parse(body);for(var k in o)fd.append(k,o[k]);
+      var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},20000);
+      return fetch('https://formsubmit.co/'+MAIL,{method:'POST',mode:'no-cors',signal:ac?ac.signal:undefined,body:fd}).then(function(){clearTimeout(to);},function(e){clearTimeout(to);why+=' / plain: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));throw e;});
+    }
+    ajax().catch(function(){return plain();})
+    .then(function(){S.step=5;render();})
+    .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;er.textContent=T.fail+' ['+why+']';});
   };
   dlg.appendChild(f);
 }
