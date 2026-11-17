@@ -13,7 +13,7 @@ var T=de?{
  consent:'Ich stimme zu, dass meine Angaben (bei Spracheingabe auch die Aufnahme als Text) per E-Mail an Denys gehen. Mehr in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
  err:'Bitte Name, gültige E-Mail und Zustimmung angeben.',fail:'Das hat nicht geklappt. Schreib mir bitte direkt an '+MAIL+'.',
  done:'Danke, ich melde mich.',doneLead:'Dein Konzept kommt innerhalb von 3 Stunden per E-Mail an {mail}.',
- est:'Erste Einschätzung',estNote:'Richtwert nach meinen Preisen auf der Website, kein Angebot. Den genauen Preis nenne ich dir im Konzept.',
+ est:'Erste Einschätzung',estNote:'Das ist ein Richtwert nach meinen Standardpreisen. Den genauen Preis nennt dir Denys, nachdem er dein Konzept geprüft hat.',
  per:' pro Video',from:'ab ',long:'Bei längeren Videos nenne ich den genauen Preis im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',pack:'Das ist der Preis für ein Video. Für die genaue Anzahl und einen Paketpreis meldet sich Denys persönlich bei dir.',ten:'Ab 10 Videos gibt es ein Paket ab €500.',per10:' pro 10 Sekunden',month:'Monatliche Betreuung mit regelmäßigen Videos. Umfang und Preis lege ich im Konzept fest.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
  unsure:'Ich empfehle dir im Konzept das passende Format.',close2:'Fertig',
  mailSub:'SellAdShot Anfrage (DE)',
@@ -32,7 +32,7 @@ var T=de?{
  consent:'I agree that my details (for voice input, the recording as text) are sent to Denys by e-mail. More in the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.',
  err:'Please enter your name, a valid e-mail and give your consent.',fail:'That did not work. Please write to me directly at '+MAIL+'.',
  done:'Thanks, I will be in touch.',doneLead:'Your concept arrives by e-mail at {mail} within 3 hours.',
- est:'First estimate',estNote:'A guide based on the prices on my website, not an offer. I will give you the exact price in the concept.',
+ est:'First estimate',estNote:'This is a guide based on my standard prices. Denys will review your concept and send you the exact price.',
  per:' per video',from:'from ',long:'For longer videos I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',pack:'This is the price for one video. For the exact number and a package price, Denys will get back to you personally.',ten:'From 10 videos there is a package from €500.',per10:' per 10 seconds',month:'Monthly support with regular videos. I will set scope and price in the concept.',multi:'Several platforms add cut-downs.',
  unsure:'In the concept I will recommend the right format.',close2:'Done',
  mailSub:'SellAdShot enquiry (EN)',
@@ -181,7 +181,7 @@ function done(){
   var e=estimate();var h=el('h2','',T.done);dlg.appendChild(h);
   dlg.appendChild(el('p','sap-lead',T.doneLead.replace('{mail}',S.email)));
   var b=el('div','sap-est');b.appendChild(el('div','lb',T.est));b.appendChild(el('div','pr',e.text));
-  e.notes.forEach(function(x){b.appendChild(el('p','',x));});b.appendChild(el('p','',T.estNote));dlg.appendChild(b);
+  b.appendChild(el('p','',T.estNote));dlg.appendChild(b);
   var fb=el('div','sap-er');fb.id='sap-fail';fb.hidden=true;fb.setAttribute('role','alert');dlg.appendChild(fb);
   var n=el('div','sap-nav'),c=el('button','sap-next',T.close2);c.type='button';c.onclick=close;n.appendChild(c);dlg.appendChild(n);
 }
