@@ -133,7 +133,7 @@ function contact(){
     if(hp.checked)return;
     var go=nv.querySelector('.sap-next'),est=estimate();go.disabled=true;go.textContent=T.sending;
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
-    var msg=[T.q[0].t+' '+pick(0),T.q[1].t+' '+(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),T.q[2].t+' '+pick(2),'',T.idea+':',S.idea||'-','','Estimate: '+est.text].join('\n');
+    var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
     var t0=Date.now(),why='';
     function ajax(){
