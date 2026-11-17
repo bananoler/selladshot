@@ -46,21 +46,21 @@ function mailHtml(text) {
         + (rest.length ? '<div style="font:13px/1.5 Arial,sans-serif;color:#4a5878">' + esc(rest.join(' ')) + '</div>' : '')
         + '</td></tr></table>';
     }
-    return '<p style="margin:0 0 16px;font:' + (i === 0 ? '700 18px' : '16px') + '/1.55 Arial,sans-serif;color:#0e2a5c">' + e + '</p>';
+    return '<p style="margin:0 0 16px;text-align:justify;font:' + (i === 0 ? '700 18px' : '16px') + '/1.55 Arial,sans-serif;color:#0e2a5c">' + e + '</p>';
   }).join('');
   const btn = de ? 'Beispiele ansehen' : 'See examples';
   return '<!doctype html><html><body style="margin:0;padding:0;background:#f4f7fb">'
     + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f7fb"><tr><td align="center" style="padding:16px 6px">'
-    + '<table role="presentation" width="720" cellpadding="0" cellspacing="0" style="max-width:720px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">'
-    + '<tr><td style="background:#0e2a5c;padding:22px 36px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>'
+    + '<table role="presentation" width="620" cellpadding="0" cellspacing="0" style="max-width:620px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">'
+    + '<tr><td style="background:#0e2a5c;padding:22px 32px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>'
     + '<td><img src="cid:logo" width="36" height="36" alt="" style="display:block;border-radius:8px"></td>'
     + '<td style="padding-left:12px;font:800 20px Arial,sans-serif;color:#ffffff;letter-spacing:.02em">SellAdShot</td>'
     + '</tr></table></td></tr>'
     + '<tr><td style="height:4px;background:#ff6b1a;font-size:0;line-height:0">&nbsp;</td></tr>'
-    + '<tr><td style="padding:32px 36px 12px">' + body
+    + '<tr><td style="padding:30px 32px 12px">' + body
     + '<p style="margin:8px 0 22px"><a href="https://selladshot.com' + (de ? '/de/' : '/') + '" style="display:inline-block;background:#ff6b1a;color:#ffffff;font:800 14px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:999px">' + btn + '</a></p>'
     + '<p style="margin:0 0 6px;font:16px/1.5 Arial,sans-serif;color:#0e2a5c">' + esc(sig).replace(/\n/g, '<br>') + '</p></td></tr>'
-    + '<tr><td style="padding:20px 36px 26px;border-top:1px solid #e3e9f2"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>'
+    + '<tr><td style="padding:20px 32px 26px;border-top:1px solid #e3e9f2"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>'
     + '<td valign="bottom" style="font:12px/1.5 Arial,sans-serif;color:#7a879f">SellAdShot · Denys Myroniuk · Berlin<br><a href="https://selladshot.com" style="color:#7a879f">selladshot.com</a></td>'
     + '<td align="right" valign="bottom"><div style="font:12px Arial,sans-serif;color:#7a879f;padding-bottom:6px">' + (de ? 'Direkt erreichen' : 'Reach me directly') + '</div>'
     + '<a href="https://wa.me/4917663444890" style="text-decoration:none"><img src="cid:wa" width="32" height="32" alt="WhatsApp" style="border-radius:16px;vertical-align:middle"></a>'
