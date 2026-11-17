@@ -152,7 +152,9 @@ function contact(){
       return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
       .then(function(r){clearTimeout(to);if(r.ok)return;return r.json().then(function(j){throw new Error('own '+r.status+(j&&j.detail?' '+j.detail:''));},function(){throw new Error('own '+r.status);});},function(e){clearTimeout(to);throw e;});
     }
-    var ownWhy='';own().catch(function(e){ownWhy='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));throw e;})
+    var ownWhy='';own().catch(function(e){ownWhy='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));
+      // backup route: FormSubmit delivers but often answers slowly, so a timeout there still counts as sent
+      return ajax().catch(function(){if(why==='timeout')return;throw e;});})
     .then(function(){S.step=5;render();})
     .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;why=ownWhy||why;er.textContent=T.fail+' ['+why+']';var mb=document.createElement('a');mb.className='sap-skip';mb.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSub)+'&body='+encodeURIComponent(msg.replace(/ \| /g,'\n'));mb.textContent=de?'Per E-Mail-Programm senden':'Send with your mail app';er.appendChild(document.createElement('br'));er.appendChild(mb);});
   };
