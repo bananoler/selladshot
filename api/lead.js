@@ -117,7 +117,14 @@ module.exports = async (req, res) => {
   try {
     const de = !/enquiry/i.test(subject);
     let rows = cleanRows(b.rows);
-    if (!rows.length) rows = [[de ? 'Nachricht' : 'Message', message.replace(/ \| /g, '\n')]];
+    if (!rows.length) {
+      // older clients send one string joined by ' | ': type | use | count | length | idea | Estimate: ...
+      const parts = message.split(' | ');
+      if (parts.length === 6) {
+        const L = de ? ['Videotyp', 'Einsatz', 'Anzahl', 'Länge', 'Idee', 'Schätzung'] : ['Video type', 'Use', 'Count', 'Length', 'Idea', 'Estimate'];
+        rows = parts.map((p, i) => [L[i], i === 5 ? p.replace(/^Estimate:\s*/, '') : p]);
+      } else rows = [[de ? 'Nachricht' : 'Message', message.replace(/ \| /g, '\n')]];
+    }
     const om = ownerMail(name, email, rows, de);
     await send(key, { from, to: [TO], reply_to: email, subject, html: om.html, text: om.text });
     // price guide copy to the sender: only when a verified sending domain is configured
