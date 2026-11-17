@@ -46,7 +46,7 @@
 .sap-hp{position:absolute;left:-9999px;opacity:0}
 .sap-est{padding:18px 20px;border-radius:20px;background:#eef1fb;display:flex;flex-direction:column;gap:6px}
 .sap-est .lb{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c2410c}
-.sap-est .pr{font-family:Syne,sans-serif;font-weight:800;font-size:34px;line-height:1.1}
+.sap-est .pr{display:flex;align-items:baseline;gap:8px;white-space:nowrap;font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(26px,8.5vw,36px);line-height:1.1}.sap-est .pr .u{font-size:clamp(14px,4vw,16px);font-weight:800;color:#4a5378}
 .sap-est p{margin:0;font-size:14px;line-height:1.45;color:#4a5378}
 .sap-lead{margin:0;font-size:17px;line-height:1.45;color:#2a3358}
 @media (max-width:640px){
