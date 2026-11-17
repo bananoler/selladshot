@@ -3,7 +3,7 @@
 .sap-ov *{box-sizing:border-box}
 .sap{position:relative;width:100%;max-width:640px;max-height:calc(100dvh - 40px);overflow:auto;background:#fff;border-radius:28px;box-shadow:0 30px 80px rgba(8,12,36,.45);padding:26px 40px 32px;display:flex;flex-direction:column;gap:20px}
 .sap-top{display:flex;flex-direction:column;gap:12px}
-.sap-meta{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#5b6485}
+.sap-meta{display:flex;justify-content:flex-end;align-items:center;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#5b6485}
 .sap-x{width:44px;height:44px;margin:-12px -12px -12px 0;border-radius:50%;border:0;background:#eef0f8;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#1f2e5c}
 .sap-seg{display:flex;gap:6px}
 .sap-seg i{flex:1;height:6px;border-radius:3px;background:#e6e8f2}
@@ -61,3 +61,6 @@
 }
 
 .sap h2:focus{outline:none}
+
+.sap-meta>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sap-meta{margin-bottom:8px}
