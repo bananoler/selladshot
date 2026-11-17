@@ -54,7 +54,12 @@ function mailHtml(text) {
     + '<tr><td style="padding:28px 28px 8px">' + body
     + '<p style="margin:8px 0 22px"><a href="https://selladshot.com' + (de ? '/de/' : '/') + '" style="display:inline-block;background:#ff6b1a;color:#ffffff;font:800 14px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:999px">' + btn + '</a></p>'
     + '<p style="margin:0 0 6px;font:16px/1.5 Arial,sans-serif;color:#0e2a5c">' + esc(sig).replace(/\n/g, '<br>') + '</p></td></tr>'
-    + '<tr><td style="padding:18px 28px 24px;border-top:1px solid #e3e9f2;font:12px/1.5 Arial,sans-serif;color:#7a879f">SellAdShot · Denys Myroniuk · Berlin<br><a href="https://selladshot.com" style="color:#7a879f">selladshot.com</a></td></tr>'
+    + '<tr><td style="padding:18px 28px 24px;border-top:1px solid #e3e9f2"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>'
+    + '<td valign="bottom" style="font:12px/1.5 Arial,sans-serif;color:#7a879f">SellAdShot · Denys Myroniuk · Berlin<br><a href="https://selladshot.com" style="color:#7a879f">selladshot.com</a></td>'
+    + '<td align="right" valign="bottom"><div style="font:12px Arial,sans-serif;color:#7a879f;padding-bottom:6px">' + (de ? 'Direkt erreichen' : 'Reach me directly') + '</div>'
+    + '<a href="https://wa.me/4917663444890" style="text-decoration:none"><img src="https://selladshot.com/mail-wa.png" width="32" height="32" alt="WhatsApp" style="border-radius:16px;vertical-align:middle"></a>'
+    + '&nbsp;&nbsp;<a href="https://instagram.com/denysonlyfacts" style="text-decoration:none"><img src="https://selladshot.com/mail-ig.png" width="32" height="32" alt="Instagram" style="border-radius:16px;vertical-align:middle"></a></td>'
+    + '</tr></table></td></tr>'
     + '</table></td></tr></table></body></html>';
 }
 async function send(key, body) {
