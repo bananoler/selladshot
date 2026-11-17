@@ -150,7 +150,7 @@ function contact(){
     function own(){
       var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},12000);
       return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
-      .then(function(r){clearTimeout(to);if(!r.ok)throw new Error('own '+r.status);},function(e){clearTimeout(to);throw e;});
+      .then(function(r){clearTimeout(to);if(r.ok)return;return r.json().then(function(j){throw new Error('own '+r.status+(j&&j.detail?' '+j.detail:''));},function(){throw new Error('own '+r.status);});},function(e){clearTimeout(to);throw e;});
     }
     var ownWhy='';own().catch(function(e){ownWhy='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));throw e;})
     .then(function(){S.step=5;render();})

@@ -21,6 +21,6 @@ module.exports = async (req, res) => {
     res.status(200).json({ success: true });
   } catch (e) {
     console.error(e.message);
-    res.status(502).json({ success: false, message: 'mail failed' });
+    res.status(502).json({ success: false, message: 'mail failed', detail: String(e.message).slice(0, 160) });
   }
 };
