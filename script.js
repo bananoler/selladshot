@@ -1,4 +1,8 @@
 (function(){
+// remove images that fail to load (replaces an inline onerror attribute, which the CSP forbids)
+function rm(i){if(i.hasAttribute('data-rm'))i.remove();}
+document.addEventListener('error',function(e){if(e.target&&e.target.tagName==='IMG')rm(e.target);},true);
+[].slice.call(document.querySelectorAll('img[data-rm]')).forEach(function(i){if(i.complete&&i.naturalWidth===0)rm(i);});
 var hv=[].slice.call(document.querySelectorAll('video[data-src]'));
 function load(v){if(!v.dataset.ld){v.dataset.ld=1;v.src=v.dataset.src;}}
 if('IntersectionObserver' in window){
