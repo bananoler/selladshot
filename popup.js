@@ -185,5 +185,16 @@ function done(){
   var fb=el('div','sap-er');fb.id='sap-fail';fb.hidden=true;fb.setAttribute('role','alert');dlg.appendChild(fb);
   var n=el('div','sap-nav'),c=el('button','sap-next',T.close2);c.type='button';c.onclick=close;n.appendChild(c);dlg.appendChild(n);
 }
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn');if(a)open(e);});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn');if(a){mark();open(e);}});
+// opens once on its own after 30 s on the page; not again for 7 days once seen or closed
+var KEY='sap_seen',AUTO_MS=30000,DAYS=7;
+function seen(){try{var t=+localStorage.getItem(KEY);return t&&Date.now()-t<DAYS*864e5;}catch(e){return false;}}
+function mark(){try{localStorage.setItem(KEY,String(Date.now()));}catch(e){}}
+function auto(){
+  if(seen()||(ov&&!ov.hidden))return;
+  if(document.querySelector('.sas-chat.is-open')){setTimeout(auto,10000);return;}
+  if(document.hidden){document.addEventListener('visibilitychange',function f(){if(!document.hidden){document.removeEventListener('visibilitychange',f);setTimeout(auto,2000);}});return;}
+  mark();open();
+}
+if(!seen())setTimeout(auto,AUTO_MS);
 })();
