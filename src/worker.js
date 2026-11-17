@@ -68,6 +68,25 @@ function mailHtml(text) {
     + '</tr></table></td></tr>'
     + '</table></td></tr></table></body></html>';
 }
+
+// Table-style notification mail for Denys. rows = [[label, value], ...]
+function ownerMail(name, email, rows, de) {
+  const all = rows.concat([[de ? 'E-Mail' : 'E-mail', email]]);
+  const td = 'padding:9px 0;border-top:1px solid #e3e9f2;font:14px/1.5 Arial,sans-serif;color:#0e2a5c';
+  const trs = all.map(([l, v], i) => '<tr><td style="' + td + ';color:#7a879f;width:32%" valign="top">' + esc(l) + '</td><td style="' + td + (i === all.length - 1 ? '' : ';font-weight:' + (/Schätzung|Estimate|Videotyp|Video type/.test(l) ? '700' : '400')) + '">'
+    + (l.indexOf('E-') === 0 ? '<a href="mailto:' + esc(v) + '" style="color:#ff6b1a;text-decoration:none">' + esc(v) + '</a>' : esc(v).replace(/\n/g, '<br>')) + '</td></tr>').join('');
+  const html = '<!doctype html><html><body style="margin:0;padding:0;background:#f4f7fb"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 8px">'
+    + '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:12px"><tr><td style="padding:24px 28px">'
+    + '<div style="font:800 19px Arial,sans-serif;color:#0e2a5c;padding-bottom:14px">' + (de ? 'Neue Anfrage von ' : 'New enquiry from ') + esc(name) + '</div>'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">' + trs + '</table>'
+    + '</td></tr></table></td></tr></table></body></html>';
+  const text = (de ? 'Neue Anfrage von ' : 'New enquiry from ') + name + '\n\n' + all.map(([l, v]) => l + ': ' + v).join('\n');
+  return { html, text };
+}
+function cleanRows(r) {
+  if (!Array.isArray(r)) return [];
+  return r.slice(0, 12).map((x) => (Array.isArray(x) ? [clean(String(x[0]), 30), cleanBlock(String(x[1] == null ? '-' : x[1]), 1000) || '-'] : null)).filter((x) => x && x[0]);
+}
 async function send(key, body) {
   const r = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   if (!r.ok) throw new Error('resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
@@ -91,13 +110,18 @@ async function lead(req, env) {
   } catch (e) { return fail(400, 'invalid'); }
 
   const name = clean(b.name, 120), email = clean(b.email, 200), message = cleanBlock(b.message, 4000), auto = cleanBlock(b.auto, 2000);
-  let subject = clean(b.subject, 80);
-  if (!/^SellAdShot [A-Za-z0-9 ()]+$/.test(subject)) subject = 'SellAdShot enquiry';
+  let subject = clean(b.subject, 120);
+  subject = subject.replace(/[^\p{L}\p{N} ()·:&,.+\-–]/gu, '').trim();
+  if (!/^SellAdShot /.test(subject)) subject = 'SellAdShot enquiry';
   if (!name || !/^[^@\s<>",;]+@[^@\s<>",;]+\.[^@\s<>",;]+$/.test(email) || !message) return fail(400, 'invalid');
 
   const from = env.RESEND_FROM || 'SellAdShot <onboarding@resend.dev>';
   try {
-    await send(key, { from, to: [TO], reply_to: email, subject, html: '<p><b>' + esc(name) + '</b> &lt;' + esc(email) + '&gt;</p><p style="white-space:pre-line">' + esc(message.replace(/ \| /g, '\n')) + '</p>' });
+    const de = !/enquiry/i.test(subject);
+    let rows = cleanRows(b.rows);
+    if (!rows.length) rows = [[de ? 'Nachricht' : 'Message', message.replace(/ \| /g, '\n')]];
+    const om = ownerMail(name, email, rows, de);
+    await send(key, { from, to: [TO], reply_to: email, subject, html: om.html, text: om.text });
     if (env.RESEND_FROM && auto) await send(key, { from, to: [email], reply_to: TO, subject: 'SellAdShot', text: auto, html: mailHtml(auto), attachments: MAIL_IMGS }).catch(() => {});
     return reply(200, { success: true });
   } catch (e) {

@@ -141,6 +141,9 @@ function contact(){
     var est=estimate();
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
     var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),pick(3),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
+    var L=de?['Videotyp','Einsatz','Anzahl','Länge','Idee','Schätzung']:['Video type','Use','Count','Length','Idea','Estimate'];
+    var rows=[[L[0],pick(0)],[L[1],(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-')],[L[2],pick(2)],[L[3],pick(3)],[L[4],(S.idea||'-').replace(/\s+/g,' ')],[L[5],est.text]];
+    var subj=T.mailSub.replace(/\s*\((DE|EN)\)\s*$/,'')+' ('+(de?'DE':'EN')+') · '+pick(0)+' · '+S.name;
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
     var t0=Date.now(),why='';
     function ajax(){
@@ -156,7 +159,7 @@ function contact(){
     }
     function own(){
       var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort();},12000);
-      return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
+      return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:subj,rows:rows,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
       .then(function(r){clearTimeout(to);if(r.ok)return;return r.json().then(function(j){throw new Error('own '+r.status+(j&&j.detail?' '+j.detail:''));},function(){throw new Error('own '+r.status);});},function(e){clearTimeout(to);throw e;});
     }
     S.step=6;render();
