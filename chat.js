@@ -1,9 +1,9 @@
 (function(){
   var de=(document.documentElement.lang||'en').toLowerCase().indexOf('de')===0;
   var T=de?{
-    title:'SellAdShot Assistent',sub:'Antworten sofort · Denys meldet sich persönlich',
+    title:'Sully',sub:'SellAdShot Assistent · Denys meldet sich persönlich',
     open:'Chat öffnen',close:'Chat schließen',ph:'Frage stellen …',send:'Nachricht senden',label:'Nachricht',
-    greet:'Hallo und herzlich willkommen bei SellAdShot! Schön, dass Du vorbeischaust. Wie kann ich Dir heute weiterhelfen?',
+    greet:'Hallo, ich bin Sully, der Assistent von SellAdShot. Schön, dass Du vorbeischaust! Wie kann ich Dir heute weiterhelfen?',
     chips:[['price','Was kostet ein Werbevideo?'],['addons','Wie berechnet man Add-ons?'],['process','Wie läuft ein Projekt ab?'],['quote','Frage an Denys / Angebot']],
     a:{
       price:'Vielen Dank für Deine Frage! Sehr gern:\n\n• Reels, TikToks und KI-Avatar-Videos: ab 55 € pro Video, im Paket mit 10 Videos ab 500 €\n• KI-Werbe- und Erklärvideos: ab 100 € (10 Sekunden) bzw. 500 € (60 Sekunden)\n\nDas sind Startpreise. Sobald Dein Konzept steht, nenne ich Dir gern den genauen Preis.',
@@ -19,9 +19,9 @@
     mailSubject:'Anfrage Werbevideo',
     foot:'Automatischer Assistent. Nachrichten an Denys gehen per E-Mail. ',priv:'Datenschutz',privHref:'/datenschutz'
   }:{
-    title:'SellAdShot Assistant',sub:'Instant answers · Denys replies personally',
+    title:'Sully',sub:'SellAdShot assistant · Denys replies personally',
     open:'Open chat',close:'Close chat',ph:'Ask a question …',send:'Send message',label:'Message',
-    greet:'Hello, and welcome to SellAdShot! I\'m so glad you stopped by. How can I help you today?',
+    greet:'Hi, I\'m Sully, the SellAdShot assistant. Glad you stopped by! How can I help you today?',
     chips:[['price','How much does a video cost?'],['addons','How are add-ons priced?'],['process','How does a project work?'],['quote','Ask Denys / quote']],
     a:{
       price:'Thank you for asking! I\'d be happy to help:\n\n• Reels, TikToks and AI avatar videos: from €55 per video, or €500 for a pack of 10\n• AI ad and explainer videos: from €100 (10 seconds) or €500 (60 seconds)\n\nThese are starting prices. Once I\'ve put together your concept, I\'ll gladly confirm the exact price.',
@@ -48,11 +48,11 @@
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;return e;}
   var root=el('div','sas-chat');
   var launch=el('button','sas-launch');launch.type='button';launch.setAttribute('aria-label',T.open);launch.setAttribute('aria-expanded','false');launch.setAttribute('aria-controls','sas-panel');
-  launch.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>';
+  launch.innerHTML='<img src="/sully.webp" alt="" width="60" height="60">';
   var panel=el('div','sas-panel');panel.id='sas-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label',T.title);panel.hidden=true;
 
   var head=el('div','sas-head');
-  var av=el('div','sas-av','S');av.setAttribute('aria-hidden','true');
+  var av=el('div','sas-av');av.setAttribute('aria-hidden','true');av.innerHTML='<img src="/sully.webp" alt="" width="44" height="44">';
   var ht=el('div','sas-ht');ht.appendChild(el('div','sas-t',T.title));ht.appendChild(el('div','sas-s',T.sub));
   var x=el('button','sas-x');x.type='button';x.setAttribute('aria-label',T.close);
   x.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
