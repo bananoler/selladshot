@@ -5,7 +5,7 @@ var T=de?{
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',s:'Mehrere Antworten möglich.',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
-  {t:'Wie viele Videos brauchst du?',s:'Ungefähr reicht völlig.',o:['Ein Video','Mehrere Videos (2–10)','Monatliche Betreuung, regelmäßig neue Videos']},
+  {t:'Wie viele Videos brauchst du?',s:'Ungefähr reicht völlig.',o:['Ein Video','Mehr als ein Video, zum Beispiel eine Serie']},
   {t:'Wie lang soll ein Video sein?',s:'So kann ich den Preis einschätzen.',o:['Bis 1 Minute','Ab 1 Minute']}],
  idea:'Erzähl mir von deiner Idee',ideaSub:'Tippe auf das Mikrofon und sprich.',mic:'Tippe zum Sprechen',micHint:'Ein paar Sätze reichen.',listen:'Ich höre zu … ',stopHint:'Tippe auf Stopp, wenn du fertig bist.',
  micStart:'Aufnahme starten',micStop:'Aufnahme stoppen',txt:'Dein Text',txtPh:'Hier erscheint, was du sagst. Du kannst es danach anpassen.',
@@ -24,7 +24,7 @@ var T=de?{
  q:[
   {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',s:'Several answers possible.',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
-  {t:'How many videos do you need?',s:'A rough idea is enough.',o:['One video','Several videos (2–10)','Monthly support, new videos regularly']},
+  {t:'How many videos do you need?',s:'A rough idea is enough.',o:['One video','More than one video, for example a series']},
   {t:'How long should a video be?',s:'So I can estimate the price.',o:['Up to 1 minute','1 minute or longer']}],
  idea:'Tell me about your idea',ideaSub:'Tap the microphone and speak.',mic:'Tap to speak',micHint:'A few sentences are enough.',listen:'Listening … ',stopHint:'Tap stop when you are done.',
  micStart:'Start recording',micStop:'Stop recording',txt:'Your text',txtPh:'What you say appears here. You can edit it afterwards.',
@@ -176,7 +176,7 @@ function estimate(){
     else if(c===1){
       if(av){text=one;notes.push(T.several);}
       else{text=T.from+eur(P_PACK);notes.push(T.single.replace('{p}',one),T.pack);}
-    }else{text=T.onreq;notes.push(T.single.replace('{p}',one),T.month);}
+    }
   }
   if(S.a[1].length>=3)notes.push(T.multi);
   return {text:text,notes:notes};
