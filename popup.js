@@ -1,11 +1,12 @@
 (function(){
 var de=/^de/i.test(document.documentElement.lang||''),MAIL='denys@selladshot.com';
 var T=de?{
- of:'Frage {n} von 5',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Konzept anfordern',sending:'Wird gesendet …',
+ of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Konzept anfordern',sending:'Wird gesendet …',
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',s:'Mehrere Antworten möglich.',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
-  {t:'Wie viele Videos brauchst du und wie lang?',s:'So kann ich den Preis einschätzen.',o:['Ein Video, bis 1 Minute','Ein Video, länger als 1 Minute','Mehrere Videos (2–9)','10 Videos oder mehr']}],
+  {t:'Wie viele Videos brauchst du?',s:'Ungefähr reicht völlig.',o:['Ein Video','Mehrere Videos (2–10)','Monatliche Betreuung, regelmäßig neue Videos']},
+  {t:'Wie lang soll ein Video sein?',s:'So kann ich den Preis einschätzen.',o:['Bis 15 Sekunden','30–60 Sekunden','1–2 Minuten','Länger als 2 Minuten']}],
  idea:'Erzähl mir von deiner Idee',ideaSub:'Tippe auf das Mikrofon und sprich.',mic:'Tippe zum Sprechen',micHint:'Ein paar Sätze reichen.',listen:'Ich höre zu … ',stopHint:'Tippe auf Stopp, wenn du fertig bist.',
  micStart:'Aufnahme starten',micStop:'Aufnahme stoppen',txt:'Dein Text',txtPh:'Hier erscheint, was du sagst. Du kannst es danach anpassen.',
  contact:'Wohin schicke ich das Konzept?',name:'Name',email:'E-Mail',
@@ -13,17 +14,18 @@ var T=de?{
  err:'Bitte Name, gültige E-Mail und Zustimmung angeben.',fail:'Das hat nicht geklappt. Schreib mir bitte direkt an '+MAIL+'.',
  done:'Danke, ich melde mich.',doneLead:'Dein Konzept kommt innerhalb von 3 Stunden per E-Mail an {mail}.',
  est:'Erste Einschätzung',estNote:'Richtwert nach meinen Preisen auf der Website, kein Angebot. Den genauen Preis nenne ich dir im Konzept.',
- per:' pro Video',from:'ab ',long:'Länger als 1 Minute: den genauen Preis nenne ich im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',ten:'Für 10 Videos oder mehr mache ich ein Paket. Das nenne ich im Konzept.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
+ per:' pro Video',from:'ab ',long:'Bei längeren Videos nenne ich den genauen Preis im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',month:'Monatspaket mit regelmäßigen Videos. Umfang und Preis lege ich im Konzept fest.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
  unsure:'Ich empfehle dir im Konzept das passende Format.',close2:'Fertig',
  mailSub:'SellAdShot Anfrage (DE)',
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Dein Konzept bekommst du innerhalb von 3 Stunden.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
  lang:'de-DE'
 }:{
- of:'Question {n} of 5',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Request concept',sending:'Sending …',
+ of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Request concept',sending:'Sending …',
  q:[
   {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',s:'Several answers possible.',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
-  {t:'How many videos do you need and how long?',s:'So I can estimate the price.',o:['One video, up to 1 minute','One video, longer than 1 minute','Several videos (2–9)','10 videos or more']}],
+  {t:'How many videos do you need?',s:'A rough idea is enough.',o:['One video','Several videos (2–10)','Monthly support, new videos regularly']},
+  {t:'How long should a video be?',s:'So I can estimate the price.',o:['Up to 15 seconds','30–60 seconds','1–2 minutes','Longer than 2 minutes']}],
  idea:'Tell me about your idea',ideaSub:'Tap the microphone and speak.',mic:'Tap to speak',micHint:'A few sentences are enough.',listen:'Listening … ',stopHint:'Tap stop when you are done.',
  micStart:'Start recording',micStop:'Stop recording',txt:'Your text',txtPh:'What you say appears here. You can edit it afterwards.',
  contact:'Where should I send the concept?',name:'Name',email:'E-mail',
@@ -31,7 +33,7 @@ var T=de?{
  err:'Please enter your name, a valid e-mail and give your consent.',fail:'That did not work. Please write to me directly at '+MAIL+'.',
  done:'Thanks, I will be in touch.',doneLead:'Your concept arrives by e-mail at {mail} within 3 hours.',
  est:'First estimate',estNote:'A guide based on the prices on my website, not an offer. I will give you the exact price in the concept.',
- per:' per video',from:'from ',long:'Longer than 1 minute: I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',ten:'For 10 videos or more I make a package. I will give it in the concept.',multi:'Several platforms add cut-downs.',
+ per:' per video',from:'from ',long:'For longer videos I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',month:'A monthly package with regular videos. I will set scope and price in the concept.',multi:'Several platforms add cut-downs.',
  unsure:'In the concept I will recommend the right format.',close2:'Done',
  mailSub:'SellAdShot enquiry (EN)',
  auto:'Hi {name},\n\nthanks for your enquiry. You will get your concept within 3 hours.\n\nFirst estimate: {est}\n(A guide based on the prices on selladshot.com, not an offer.)\n\nDenys\nSellAdShot',
@@ -42,7 +44,7 @@ var P=[{lo:500,hi:700,per:0},{lo:100,hi:500,per:0},{lo:55,hi:115,per:1},{lo:500,
 function eur(n){return '€'+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,de?'.':',');}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
 var ov,dlg,S,last;
-function reset(){S={step:0,a:[null,[],null],idea:'',name:'',email:''};}
+function reset(){S={step:0,a:[null,[],null,null],idea:'',name:'',email:''};}
 function open(e){if(e)e.preventDefault();last=document.activeElement;reset();if(!ov)build();ov.hidden=false;document.body.style.overflow='hidden';render();}
 function close(){stopRec();if(ov)ov.hidden=true;document.body.style.overflow='';if(last&&last.focus)last.focus();}
 function build(){
@@ -61,7 +63,7 @@ function top(n){
   var x=el('button','sap-x');x.type='button';x.setAttribute('aria-label',T.close);
   x.innerHTML='<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14"/></svg>';
   x.onclick=close;m.appendChild(x);w.appendChild(m);
-  var s=el('div','sap-seg');for(var i=1;i<=5;i++){s.appendChild(el('i',i<=n?'on':''));}w.appendChild(s);return w;
+  var s=el('div','sap-seg');for(var i=1;i<=6;i++){s.appendChild(el('i',i<=n?'on':''));}w.appendChild(s);return w;
 }
 function nav(canNext,opts){
   var n=el('div','sap-nav');
@@ -74,7 +76,7 @@ function nav(canNext,opts){
 function render(){
   dlg.innerHTML='';var st=S.step;
   dlg.appendChild(top(st+1));
-  if(st<3&&st!==3){var q=T.q[st],multi=st===1,h=el('h2','',q.t);h.tabIndex=-1;dlg.appendChild(h);
+  if(st<4){var q=T.q[st],multi=st===1,h=el('h2','',q.t);h.tabIndex=-1;dlg.appendChild(h);
     if(q.s)dlg.appendChild(el('p','sap-sub',q.s));
     var l=el('div','sap-list');l.setAttribute('role',multi?'group':'radiogroup');l.setAttribute('aria-label',q.t);
     q.o.forEach(function(o,i){
@@ -86,8 +88,8 @@ function render(){
     dlg.appendChild(l);
     var ok=multi?true:S.a[st]!==null;
     dlg.appendChild(nav(ok,{skip:multi&&!S.a[1].length}));
-  }else if(st===3){idea();}else if(st===4){contact();}else{done();}
-  var f=dlg.querySelector('h2');if(f&&st!==3)f.focus({preventScroll:true});
+  }else if(st===4){idea();}else if(st===5){contact();}else{done();}
+  var f=dlg.querySelector('h2');if(f&&st!==4)f.focus({preventScroll:true});
 }
 var rec=null,micBtn,txt,lvl;
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -132,7 +134,7 @@ function contact(){
     if(hp.checked)return;
     var est=estimate();
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
-    var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
+    var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),pick(3),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
     var t0=Date.now(),why='';
     function ajax(){
@@ -151,7 +153,7 @@ function contact(){
       return fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:T.mailSub,name:S.name,email:S.email,message:msg,auto:T.auto.replace('{name}',S.name).replace('{est}',est.text)})})
       .then(function(r){clearTimeout(to);if(r.ok)return;return r.json().then(function(j){throw new Error('own '+r.status+(j&&j.detail?' '+j.detail:''));},function(){throw new Error('own '+r.status);});},function(e){clearTimeout(to);throw e;});
     }
-    S.step=5;render();
+    S.step=6;render();
     var ownWhy='';own().catch(function(e){ownWhy='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));
       // backup route: FormSubmit delivers but often answers slowly, so a timeout there still counts as sent
       return ajax().catch(function(){if(why==='timeout')return;throw e;});})
@@ -162,14 +164,16 @@ function contact(){
   dlg.appendChild(f);
 }
 function estimate(){
-  var p=P[S.a[0]],c=S.a[2],notes=[],text;
-  if(!p){text=T.from+eur(55);notes.push(T.unsure);}
+  var t=S.a[0],c=S.a[2],L=S.a[3],notes=[],text;
+  if(t===4||t===null){text=T.from+eur(55);notes.push(T.unsure);}
   else{
-    var rng=eur(p.lo)+'–'+String(eur(p.hi)).slice(1)+(p.per?T.per:'');
-    if(c===1){text=T.from+eur(p.hi)+(p.per?T.per:'');notes.push(T.long);}
-    else if(c===2){text=rng+(p.per?'':T.per);notes.push(T.several);}
-    else if(c===3){text=(S.a[0]===2)?T.from+eur(500):rng+(p.per?'':T.per);notes.push(T.ten);}
-    else text=rng;
+    var av=t===2,lo,hi=0;
+    if(av){if(L<=1){lo=55;hi=115;}else{lo=115;}}
+    else{if(L===0){lo=100;hi=300;}else if(L===1){lo=500;hi=700;}else{lo=700;}}
+    var one=hi?eur(lo)+'–'+String(eur(hi)).slice(1):T.from+eur(lo);
+    if(L>=2)notes.push(T.long);
+    if(c===2){text=T.from+eur(500);notes.push(T.month);}
+    else{text=one+((c===1||av)?T.per:'');if(c===1)notes.push(T.several);}
   }
   if(S.a[1].length>=3)notes.push(T.multi);
   return {text:text,notes:notes};

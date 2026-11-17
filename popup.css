@@ -59,3 +59,5 @@
  .sap-back{min-height:52px;padding:0 18px;font-size:14px}.sap-next{min-height:52px;padding:0 24px;font-size:14px}
  .sap-opt{font-size:15px}
 }
+
+.sap h2:focus{outline:none}
