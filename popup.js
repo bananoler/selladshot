@@ -91,12 +91,16 @@ function render(){
   }else if(st===4){idea();}else if(st===5){contact();}else{done();}
   var f=dlg.querySelector('h2');if(f&&st!==4)f.focus({preventScroll:true});
 }
+var QW=de?/^(wie|was|wer|wo|wann|warum|wieso|weshalb|welche|welcher|welches|wohin|woher|womit|kann|kannst|können|könnt|gibt|ist|sind|hast|haben|habt|würde|würdest|würden|soll|sollte|darf)$/i:/^(what|how|who|where|when|why|which|can|could|do|does|did|is|are|will|would|should)$/i;
+// the browser returns speech without punctuation: capitalise each spoken phrase and end it with . or ?
+function fmt(s){s=(s||'').trim();if(!s)return '';s=s.charAt(0).toUpperCase()+s.slice(1);if(/[.!?]$/.test(s))return s;return s+(QW.test(s.split(/\s+/)[0])?'?':'.');}
 var rec=null,micBtn,txt,lvl;
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 function stopRec(){if(rec){try{rec.stop();}catch(e){}rec=null;}if(micBtn){micBtn.classList.remove('rec');micBtn.setAttribute('aria-label',T.micStart);}}
 function idea(){
   var h=el('h2','',T.idea);dlg.appendChild(h);
-  var tt,th;
+  var tt,th,nb;
+  function sync(){if(nb)nb.disabled=!txt.value.trim();}
   if(SR){
     var tile=el('div','sap-tile');micBtn=el('button','sap-mic');micBtn.type='button';micBtn.setAttribute('aria-label',T.micStart);
     micBtn.innerHTML='<svg class="mi" width="34" height="34" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="6" height="11" rx="3"/><path d="M4 10a6 6 0 0 0 12 0M10 16v3"/></svg><svg class="stop" width="28" height="28" viewBox="0 0 26 26" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="14" height="14" rx="3"/></svg>';
@@ -105,9 +109,10 @@ function idea(){
     micBtn.onclick=function(){
       if(rec){stopRec();tt.textContent=T.mic;th.textContent=T.micHint;return;}
       var r=new SR();r.lang=T.lang;r.continuous=true;r.interimResults=true;var base=txt.value?txt.value.replace(/\s*$/,' '):'',t0=Date.now();
-      r.onresult=function(e){var s='';for(var i=0;i<e.results.length;i++)s+=e.results[i][0].transcript;txt.value=(base+s).slice(0,600);S.idea=txt.value;cnt.textContent=txt.value.length+' / 600';};
+      r.onresult=function(e){var fin='',tmp='';for(var i=0;i<e.results.length;i++){var tr=e.results[i][0].transcript;if(e.results[i].isFinal)fin+=(fin?' ':'')+fmt(tr);else tmp+=tr;}
+        txt.value=(base+fin+(tmp?(fin?' ':'')+tmp:'')).slice(0,600);S.idea=txt.value;cnt.textContent=txt.value.length+' / 600';sync();};
       r.onerror=function(){stopRec();tt.textContent=T.mic;th.textContent=T.micHint;};
-      r.onend=function(){if(rec===r){stopRec();tt.textContent=T.mic;th.textContent=T.micHint;}};
+      r.onend=function(){if(rec===r){stopRec();tt.textContent=T.mic;th.textContent=T.micHint;}sync();};
       try{r.start();}catch(e){return;}
       rec=r;micBtn.classList.add('rec');micBtn.setAttribute('aria-label',T.micStop);tt.textContent=T.listen.trim();th.textContent=T.stopHint;
     };
@@ -117,8 +122,8 @@ function idea(){
   if(SR)txt.placeholder=T.txtPh;
   txt.oninput=function(){S.idea=txt.value;cnt.textContent=txt.value.length+' / 600';};
   f.appendChild(hd);f.appendChild(txt);dlg.appendChild(f);
-  var nv=nav(!!S.idea.trim());dlg.appendChild(nv);var nb=nv.querySelector('.sap-next');
-  txt.addEventListener('input',function(){nb.disabled=!txt.value.trim();});
+  var nv=nav(!!S.idea.trim());dlg.appendChild(nv);nb=nv.querySelector('.sap-next');
+  txt.addEventListener('input',sync);
 }
 function contact(){
   var h=el('h2','',T.contact);dlg.appendChild(h);
