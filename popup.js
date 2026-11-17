@@ -154,7 +154,7 @@ function contact(){
     }
     own().catch(function(e){why='own: '+(e&&e.name==='AbortError'?'timeout':String(e&&e.message||e));return ajax();}).catch(function(){return plain();})
     .then(function(){S.step=5;render();})
-    .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;er.textContent=T.fail+' ['+why+']';});
+    .catch(function(){if(window.console)console.error('SellAdShot popup send failed after '+(Date.now()-t0)+' ms:',why);go.disabled=false;go.textContent=T.send;er.textContent=T.fail+' ['+why+']';var mb=document.createElement('a');mb.className='sap-skip';mb.href='mailto:'+MAIL+'?subject='+encodeURIComponent(T.mailSub)+'&body='+encodeURIComponent(msg.replace(/ \| /g,'\n'));mb.textContent=de?'Per E-Mail-Programm senden':'Send with your mail app';er.appendChild(document.createElement('br'));er.appendChild(mb);});
   };
   dlg.appendChild(f);
 }

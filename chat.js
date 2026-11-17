@@ -106,9 +106,13 @@
       if(!qv||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ev)||!cb.checked){er.textContent=T.ferr;return;}
       if(hp.checked)return;
       go.disabled=true;go.textContent=T.fsending;
-      fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({_subject:'SellAdShot Chat ('+(de?'DE':'EN')+')',_captcha:'false',_template:'box',name:'SellAdShot Chat',email:ev,message:qv})})
-      .then(function(r){return r.json();})
+      var sub='SellAdShot Chat ('+(de?'DE':'EN')+')',ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){if(ac)ac.abort();},12000);
+      fetch('/api/lead',{method:'POST',signal:ac?ac.signal:undefined,headers:{'Content-Type':'application/json'},body:JSON.stringify({subject:sub,name:'SellAdShot Chat',email:ev,message:qv})})
+      .then(function(r){clearTimeout(tm);if(!r.ok)throw new Error('own');return {success:'true'};})
+      .catch(function(){var a2=window.AbortController?new AbortController():null,t2=setTimeout(function(){if(a2)a2.abort();},15000);
+        return fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',signal:a2?a2.signal:undefined,headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({_subject:sub,_captcha:'false',_template:'box',name:'SellAdShot Chat',email:ev,message:qv})})
+        .then(function(r){clearTimeout(t2);return r.json();},function(e){clearTimeout(t2);throw e;});})
       .then(function(j){
         if(String(j.success)!=='true')throw new Error('x');
         f.parentNode.removeChild(f);msg('me',qv);msg('bot',T.a.sent);showChips();
