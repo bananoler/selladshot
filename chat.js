@@ -53,7 +53,7 @@
 
   var head=el('div','sas-head');
   var av=el('div','sas-av');av.setAttribute('aria-hidden','true');av.innerHTML='<img src="/sully.webp" alt="" width="44" height="44">';
-  var ht=el('div','sas-ht');ht.appendChild(el('div','sas-t',T.title));ht.appendChild(el('div','sas-s',T.sub));
+  var ht=el('div','sas-ht');ht.appendChild(el('div','sas-t',T.title));
   var x=el('button','sas-x');x.type='button';x.setAttribute('aria-label',T.close);
   x.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   var ph=el('a','sas-x sas-ph');ph.href='tel:+4917663444890';ph.setAttribute('aria-label',T.call+' +49 176 63444890');ph.title='+49 176 63444890';
