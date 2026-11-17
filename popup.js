@@ -1,7 +1,7 @@
 (function(){
 var de=/^de/i.test(document.documentElement.lang||''),MAIL='denys@selladshot.com';
 var T=de?{
- of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Konzept anfordern',sending:'Wird gesendet …',
+ of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Preis anzeigen',sending:'Wird gesendet …',
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',s:'Mehrere Antworten möglich.',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
@@ -9,7 +9,7 @@ var T=de?{
   {t:'Wie lang soll ein Video sein?',s:'So kann ich den Preis einschätzen.',o:['Bis 1 Minute','Ab 1 Minute']}],
  idea:'Erzähl mir von deiner Idee',ideaSub:'Tippe auf das Mikrofon und sprich.',mic:'Tippe zum Sprechen',micHint:'Ein paar Sätze reichen.',listen:'Ich höre zu … ',stopHint:'Tippe auf Stopp, wenn du fertig bist.',
  micStart:'Aufnahme starten',micStop:'Aufnahme stoppen',txt:'Dein Text',txtPh:'Hier erscheint, was du sagst. Du kannst es danach anpassen.',
- contact:'Wohin schicke ich das Konzept?',name:'Name',email:'E-Mail',
+ contact:'Wohin soll Denys die Antwort schicken?',name:'Name',email:'E-Mail',
  consent:'Ich stimme zu, dass meine Angaben (bei Spracheingabe auch die Aufnahme als Text) per E-Mail an Denys gehen. Mehr in der <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.',
  err:'Bitte Name, gültige E-Mail und Zustimmung angeben.',fail:'Das hat nicht geklappt. Schreib mir bitte direkt an '+MAIL+'.',
  done:'Danke, ich melde mich.',doneLead:'Dein Konzept kommt innerhalb von 3 Stunden per E-Mail an {mail}.',
@@ -20,7 +20,7 @@ var T=de?{
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Dein Konzept bekommst du innerhalb von 3 Stunden.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
  lang:'de-DE'
 }:{
- of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Request concept',sending:'Sending …',
+ of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Show price',sending:'Sending …',
  q:[
   {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',s:'Several answers possible.',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
@@ -28,7 +28,7 @@ var T=de?{
   {t:'How long should a video be?',s:'So I can estimate the price.',o:['Up to 1 minute','1 minute or longer']}],
  idea:'Tell me about your idea',ideaSub:'Tap the microphone and speak.',mic:'Tap to speak',micHint:'A few sentences are enough.',listen:'Listening … ',stopHint:'Tap stop when you are done.',
  micStart:'Start recording',micStop:'Stop recording',txt:'Your text',txtPh:'What you say appears here. You can edit it afterwards.',
- contact:'Where should I send the concept?',name:'Name',email:'E-mail',
+ contact:'Where should Denys send the answer?',name:'Name',email:'E-mail',
  consent:'I agree that my details (for voice input, the recording as text) are sent to Denys by e-mail. More in the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.',
  err:'Please enter your name, a valid e-mail and give your consent.',fail:'That did not work. Please write to me directly at '+MAIL+'.',
  done:'Thanks, I will be in touch.',doneLead:'Your concept arrives by e-mail at {mail} within 3 hours.',
