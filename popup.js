@@ -14,7 +14,7 @@ var T=de?{
  err:'Bitte Name, gültige E-Mail und Zustimmung angeben.',fail:'Das hat nicht geklappt. Schreib mir bitte direkt an '+MAIL+'.',
  done:'Danke, ich melde mich.',doneLead:'Dein Konzept kommt innerhalb von 3 Stunden per E-Mail an {mail}.',
  est:'Erste Einschätzung',estNote:'Richtwert nach meinen Preisen auf der Website, kein Angebot. Den genauen Preis nenne ich dir im Konzept.',
- per:' pro Video',from:'ab ',long:'Bei längeren Videos nenne ich den genauen Preis im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',pack:'Der Paketpreis hängt von Anzahl und Länge ab. Ich nenne ihn im Konzept.',single:'Ein einzelnes Video: {p}.',onreq:'Preis auf Anfrage',per10:' pro 10 Sekunden',month:'Monatliche Betreuung mit regelmäßigen Videos. Umfang und Preis lege ich im Konzept fest.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
+ per:' pro Video',from:'ab ',long:'Bei längeren Videos nenne ich den genauen Preis im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',pack:'Das ist der Preis für ein Video. Für die genaue Anzahl und einen Paketpreis meldet sich Denys persönlich bei dir.',ten:'Ab 10 Videos gibt es ein Paket ab €500.',per10:' pro 10 Sekunden',month:'Monatliche Betreuung mit regelmäßigen Videos. Umfang und Preis lege ich im Konzept fest.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
  unsure:'Ich empfehle dir im Konzept das passende Format.',close2:'Fertig',
  mailSub:'SellAdShot Anfrage (DE)',
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Dein Konzept bekommst du innerhalb von 3 Stunden.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
@@ -33,7 +33,7 @@ var T=de?{
  err:'Please enter your name, a valid e-mail and give your consent.',fail:'That did not work. Please write to me directly at '+MAIL+'.',
  done:'Thanks, I will be in touch.',doneLead:'Your concept arrives by e-mail at {mail} within 3 hours.',
  est:'First estimate',estNote:'A guide based on the prices on my website, not an offer. I will give you the exact price in the concept.',
- per:' per video',from:'from ',long:'For longer videos I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',pack:'The package price depends on number and length. I will give it in the concept.',single:'A single video: {p}.',onreq:'Price on request',per10:' per 10 seconds',month:'Monthly support with regular videos. I will set scope and price in the concept.',multi:'Several platforms add cut-downs.',
+ per:' per video',from:'from ',long:'For longer videos I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',pack:'This is the price for one video. For the exact number and a package price, Denys will get back to you personally.',ten:'From 10 videos there is a package from €500.',per10:' per 10 seconds',month:'Monthly support with regular videos. I will set scope and price in the concept.',multi:'Several platforms add cut-downs.',
  unsure:'In the concept I will recommend the right format.',close2:'Done',
  mailSub:'SellAdShot enquiry (EN)',
  auto:'Hi {name},\n\nthanks for your enquiry. You will get your concept within 3 hours.\n\nFirst estimate: {est}\n(A guide based on the prices on selladshot.com, not an offer.)\n\nDenys\nSellAdShot',
@@ -117,7 +117,8 @@ function idea(){
   if(SR)txt.placeholder=T.txtPh;
   txt.oninput=function(){S.idea=txt.value;cnt.textContent=txt.value.length+' / 600';};
   f.appendChild(hd);f.appendChild(txt);dlg.appendChild(f);
-  dlg.appendChild(nav(true,{skip:!S.idea.trim()}));
+  var nv=nav(!!S.idea.trim());dlg.appendChild(nv);var nb=nv.querySelector('.sap-next');
+  txt.addEventListener('input',function(){nb.disabled=!txt.value.trim();});
 }
 function contact(){
   var h=el('h2','',T.contact);dlg.appendChild(h);
@@ -163,20 +164,15 @@ function contact(){
   };
   dlg.appendChild(f);
 }
-var P_LONG=500,P_PACK=1000; // ab-prices for ad/explainer videos: 1 minute or longer, and packages
 function estimate(){
   var t=S.a[0],c=S.a[2],L=S.a[3],notes=[],text;
   if(t===4||t===null){text=T.from+eur(55);notes.push(T.unsure);}
   else{
-    var av=t===2,one;
-    if(av)one=L===0?eur(55)+'–'+String(eur(115)).slice(1)+T.per:T.from+eur(115)+T.per;
-    else one=L===0?T.from+eur(100)+T.per10:T.from+eur(P_LONG);
+    var short=t===1||t===2; // reels / TikToks / AI avatar style: per-video prices
+    if(short)text=L===0?T.from+eur(55)+T.per:T.from+eur(115)+T.per;
+    else text=L===0?T.from+eur(100)+T.per10:T.from+eur(500)+T.per;
     if(L===1)notes.push(T.long);
-    if(c===0)text=one;
-    else if(c===1){
-      if(av){text=one;notes.push(T.several);}
-      else{text=T.from+eur(P_PACK);notes.push(T.single.replace('{p}',one),T.pack);}
-    }
+    if(c===1){notes.push(T.pack);if(short&&L===0)notes.push(T.ten);}
   }
   if(S.a[1].length>=3)notes.push(T.multi);
   return {text:text,notes:notes};
