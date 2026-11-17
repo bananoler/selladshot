@@ -1,0 +1,9 @@
+.git
+.gitignore
+api
+src
+node_modules
+wrangler.jsonc
+.assetsignore
+vercel.json
+SECURITY.md
