@@ -49,4 +49,4 @@
 }
 @media (prefers-reduced-motion:reduce){.sas-launch{transition:none}}
 
-.sas-launch{padding:0;overflow:hidden;background:#fff;border:2px solid #fff}.sas-launch img,.sas-av img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}.sas-av{overflow:hidden;background:#fff;border:2px solid rgba(255,255,255,.9)}
+.sas-av img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}.sas-av{overflow:hidden;background:#fff;border:2px solid rgba(255,255,255,.9)}

@@ -48,7 +48,7 @@
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;return e;}
   var root=el('div','sas-chat');
   var launch=el('button','sas-launch');launch.type='button';launch.setAttribute('aria-label',T.open);launch.setAttribute('aria-expanded','false');launch.setAttribute('aria-controls','sas-panel');
-  launch.innerHTML='<img src="/sully.webp" alt="" width="60" height="60">';
+  launch.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>';
   var panel=el('div','sas-panel');panel.id='sas-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label',T.title);panel.hidden=true;
 
   var head=el('div','sas-head');
