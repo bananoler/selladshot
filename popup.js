@@ -5,7 +5,7 @@ var T=de?{
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Social Media KI-Ad','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',s:'Mehrere Antworten möglich.',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
-  {t:'Welchen Budgetrahmen hast du?',s:'So kann ich passende Vorschläge machen.',o:['bis 1.000 €','1.000–2.500 €','2.500–5.000 €','noch offen']}],
+  {t:'Wie viele Videos brauchst du und wie lang?',s:'So kann ich den Preis einschätzen.',o:['Ein Video, bis 1 Minute','Ein Video, länger als 1 Minute','Mehrere Videos (2–9)','10 Videos oder mehr']}],
  idea:'Erzähl mir von deiner Idee',ideaSub:'Tippe auf das Mikrofon und sprich.',mic:'Tippe zum Sprechen',micHint:'Ein paar Sätze reichen.',listen:'Ich höre zu … ',stopHint:'Tippe auf Stopp, wenn du fertig bist.',
  micStart:'Aufnahme starten',micStop:'Aufnahme stoppen',txt:'Dein Text',txtPh:'Hier erscheint, was du sagst. Du kannst es danach anpassen.',
  contact:'Wohin schicke ich das Konzept?',name:'Name',email:'E-Mail',
@@ -13,7 +13,7 @@ var T=de?{
  err:'Bitte Name, gültige E-Mail und Zustimmung angeben.',fail:'Das hat nicht geklappt. Schreib mir bitte direkt an '+MAIL+'.',
  done:'Danke, ich melde mich.',doneLead:'Dein Konzept kommt innerhalb von 3 Stunden per E-Mail an {mail}.',
  est:'Erste Einschätzung',estNote:'Richtwert nach meinen Preisen auf der Website, kein Angebot. Den genauen Preis nenne ich dir im Konzept.',
- per:' pro Video',from:'ab ',over:'Das liegt über deinem Budgetrahmen. Ich zeige dir im Konzept eine kürzere Variante.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
+ per:' pro Video',from:'ab ',long:'Länger als 1 Minute: den genauen Preis nenne ich im Konzept.',several:'Das ist der Preis pro Video. Die Staffel für mehrere Videos nenne ich im Konzept.',ten:'Für 10 Videos oder mehr mache ich ein Paket. Das nenne ich im Konzept.',multi:'Für mehrere Plattformen kommen Zuschnitte dazu.',
  unsure:'Ich empfehle dir im Konzept das passende Format.',close2:'Fertig',
  mailSub:'SellAdShot Anfrage (DE)',
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Dein Konzept bekommst du innerhalb von 3 Stunden.\n\nErste Einschätzung: {est}\n(Richtwert nach meinen Preisen auf selladshot.com, kein Angebot.)\n\nDenys\nSellAdShot',
@@ -23,7 +23,7 @@ var T=de?{
  q:[
   {t:'What can I make for you?',o:['Explainer video','Social media AI ad','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',s:'Several answers possible.',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
-  {t:'What is your budget range?',s:'So I can suggest the right options.',o:['up to €1,000','€1,000–2,500','€2,500–5,000','still open']}],
+  {t:'How many videos do you need and how long?',s:'So I can estimate the price.',o:['One video, up to 1 minute','One video, longer than 1 minute','Several videos (2–9)','10 videos or more']}],
  idea:'Tell me about your idea',ideaSub:'Tap the microphone and speak.',mic:'Tap to speak',micHint:'A few sentences are enough.',listen:'Listening … ',stopHint:'Tap stop when you are done.',
  micStart:'Start recording',micStop:'Stop recording',txt:'Your text',txtPh:'What you say appears here. You can edit it afterwards.',
  contact:'Where should I send the concept?',name:'Name',email:'E-mail',
@@ -31,7 +31,7 @@ var T=de?{
  err:'Please enter your name, a valid e-mail and give your consent.',fail:'That did not work. Please write to me directly at '+MAIL+'.',
  done:'Thanks, I will be in touch.',doneLead:'Your concept arrives by e-mail at {mail} within 3 hours.',
  est:'First estimate',estNote:'A guide based on the prices on my website, not an offer. I will give you the exact price in the concept.',
- per:' per video',from:'from ',over:'This is above your budget range. In the concept I will show you a shorter version.',multi:'Several platforms add cut-downs.',
+ per:' per video',from:'from ',long:'Longer than 1 minute: I will give the exact price in the concept.',several:'This is the price per video. I will give the volume price for several videos in the concept.',ten:'For 10 videos or more I make a package. I will give it in the concept.',multi:'Several platforms add cut-downs.',
  unsure:'In the concept I will recommend the right format.',close2:'Done',
  mailSub:'SellAdShot enquiry (EN)',
  auto:'Hi {name},\n\nthanks for your enquiry. You will get your concept within 3 hours.\n\nFirst estimate: {est}\n(A guide based on the prices on selladshot.com, not an offer.)\n\nDenys\nSellAdShot',
@@ -39,7 +39,6 @@ var T=de?{
 };
 // price guide from the site's own "from" prices + up to two add-ons
 var P=[{lo:500,hi:700,per:0},{lo:100,hi:500,per:0},{lo:55,hi:115,per:1},{lo:500,hi:700,per:0},null];
-var BUD=[1000,2500,5000,Infinity];
 function eur(n){return '€'+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,de?'.':',');}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
 var ov,dlg,S,last;
@@ -163,10 +162,15 @@ function contact(){
   dlg.appendChild(f);
 }
 function estimate(){
-  var p=P[S.a[0]],bud=S.a[2]==null?null:BUD[S.a[2]],notes=[],text;
+  var p=P[S.a[0]],c=S.a[2],notes=[],text;
   if(!p){text=T.from+eur(55);notes.push(T.unsure);}
-  else{text=eur(p.lo)+'–'+String(eur(p.hi)).slice(1)+(p.per?T.per:'');
-    if(bud!=null&&bud!==Infinity&&p.lo>bud)notes.push(T.over);}
+  else{
+    var rng=eur(p.lo)+'–'+String(eur(p.hi)).slice(1)+(p.per?T.per:'');
+    if(c===1){text=T.from+eur(p.hi)+(p.per?T.per:'');notes.push(T.long);}
+    else if(c===2){text=rng+(p.per?'':T.per);notes.push(T.several);}
+    else if(c===3){text=(S.a[0]===2)?T.from+eur(500):rng+(p.per?'':T.per);notes.push(T.ten);}
+    else text=rng;
+  }
   if(S.a[1].length>=3)notes.push(T.multi);
   return {text:text,notes:notes};
 }
