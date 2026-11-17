@@ -156,5 +156,5 @@ function done(){
   e.notes.forEach(function(x){b.appendChild(el('p','',x));});b.appendChild(el('p','',T.estNote));dlg.appendChild(b);
   var n=el('div','sap-nav'),c=el('button','sap-next',T.close2);c.type='button';c.onclick=close;n.appendChild(c);dlg.appendChild(n);
 }
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn[href="#contact"]');if(a)open(e);});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.btn');if(a)open(e);});
 })();
