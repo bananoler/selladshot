@@ -1,7 +1,7 @@
 (function(){
 var de=/^de/i.test(document.documentElement.lang||''),MAIL='denys@selladshot.com';
 var T=de?{
- of:'Frage {n} von 6',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Erstschätzung',sending:'Wird gesendet …',
+ of:'Frage {n} von 5',close:'Schließen',back:'← Zurück',next:'Weiter',skip:'Überspringen',send:'Erstschätzung',sending:'Wird gesendet …',
  q:[
   {t:'Was darf ich für dich umsetzen?',o:['Erklärvideo','Reels & TikToks','KI-Avatar-Video','B2B Werbevideo','Weiß ich noch nicht']},
   {t:'Wofür brauchst du das Video?',o:['Website','LinkedIn','Social Media','Messe','Vertrieb','Sales','Recruiting']},
@@ -20,7 +20,7 @@ var T=de?{
  auto:'Hallo {name},\n\nvielen Dank für deine Anfrage. Ich melde mich in Kürze bei dir.\n\nWenn du Fragen hast, kannst du einfach auf diese E-Mail antworten. Du kannst mir auch gern weitere Dateien und Materialien schicken, zum Beispiel dein Logo, deine Social-Media-Kanäle, deine Website oder Beispielvideos. Das hilft mir bei der Erstellung deines Konzepts.\n\nErste Einschätzung: {est}\n\nDenys\nSellAdShot',
  lang:'de-DE'
 }:{
- of:'Question {n} of 6',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Estimate',sending:'Sending …',
+ of:'Question {n} of 5',close:'Close',back:'← Back',next:'Next',skip:'Skip',send:'Estimate',sending:'Sending …',
  q:[
   {t:'What can I make for you?',o:['Explainer video','Reels & TikToks','AI avatar video','B2B ad video','Not sure yet']},
   {t:'Where will the video run?',o:['Website','LinkedIn','Social media','Trade fair','Sales','Recruiting']},
@@ -59,23 +59,24 @@ function build(){
   });
 }
 function top(n){
-  var w=el('div','sap-top'),m=el('div','sap-meta');m.appendChild(el('span','',n>6?(de?'Fertig':'Done'):T.of.replace('{n}',n)));
+  var w=el('div','sap-top'),m=el('div','sap-meta');m.appendChild(el('span','',n>5?(de?'Fertig':'Done'):T.of.replace('{n}',n)));
   var x=el('button','sap-x');x.type='button';x.setAttribute('aria-label',T.close);
   x.innerHTML='<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14"/></svg>';
   x.onclick=close;m.appendChild(x);w.appendChild(m);
-  var s=el('div','sap-seg');for(var i=1;i<=6;i++){s.appendChild(el('i',i<=n?'on':''));}w.appendChild(s);return w;
+  var s=el('div','sap-seg');for(var i=1;i<=5;i++){s.appendChild(el('i',i<=n?'on':''));}w.appendChild(s);return w;
 }
+function go(d){S.step+=d;if(S.step===1)S.step+=d;}
 function nav(canNext,opts){
   var n=el('div','sap-nav');
-  if(S.step>0){var b=el('button','sap-back',T.back);b.type='button';b.onclick=function(){stopRec();S.step--;render();};n.appendChild(b);}
-  if(opts&&opts.skip){var k=el('button','sap-skip',T.skip);k.type='button';k.onclick=function(){stopRec();S.step++;render();};n.appendChild(k);}
+  if(S.step>0){var b=el('button','sap-back',T.back);b.type='button';b.onclick=function(){stopRec();go(-1);render();};n.appendChild(b);}
+  if(opts&&opts.skip){var k=el('button','sap-skip',T.skip);k.type='button';k.onclick=function(){stopRec();go(1);render();};n.appendChild(k);}
   var nx=el('button','sap-next',opts&&opts.label||T.next);nx.type=opts&&opts.submit?'submit':'button';nx.disabled=!canNext;
-  if(!(opts&&opts.submit))nx.onclick=function(){stopRec();S.step++;render();};
+  if(!(opts&&opts.submit))nx.onclick=function(){stopRec();go(1);render();};
   n.appendChild(nx);return n;
 }
 function render(){
   dlg.innerHTML='';var st=S.step;
-  dlg.appendChild(top(st+1));
+  dlg.appendChild(top(st>1?st:st+1));
   if(st<4){var q=T.q[st],multi=st===1,h=el('h2','',q.t);h.tabIndex=-1;dlg.appendChild(h);
     if(q.s)dlg.appendChild(el('p','sap-sub',q.s));
     var l=el('div','sap-list');l.setAttribute('role',multi?'group':'radiogroup');l.setAttribute('aria-label',q.t);
@@ -100,7 +101,7 @@ function stopRec(){if(rec){try{rec.stop();}catch(e){}rec=null;}if(micBtn){micBtn
 function idea(){
   var h=el('h2','',T.idea);dlg.appendChild(h);
   var tt,th,nb;
-  function sync(){if(nb)nb.disabled=!txt.value.trim();}
+  function sync(){if(nb)nb.textContent=txt.value.trim()?T.next:T.skip;}
   if(SR){
     var tile=el('div','sap-tile');micBtn=el('button','sap-mic');micBtn.type='button';micBtn.setAttribute('aria-label',T.micStart);
     micBtn.innerHTML='<svg class="mi" width="34" height="34" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="6" height="11" rx="3"/><path d="M4 10a6 6 0 0 0 12 0M10 16v3"/></svg><svg class="stop" width="28" height="28" viewBox="0 0 26 26" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="14" height="14" rx="3"/></svg>';
@@ -122,7 +123,7 @@ function idea(){
   if(SR)txt.placeholder=T.txtPh;
   txt.oninput=function(){S.idea=txt.value;cnt.textContent=txt.value.length+' / 600';};
   f.appendChild(hd);f.appendChild(txt);dlg.appendChild(f);
-  var nv=nav(!!S.idea.trim());dlg.appendChild(nv);nb=nv.querySelector('.sap-next');
+  var nv=nav(true);dlg.appendChild(nv);nb=nv.querySelector('.sap-next');sync();
   txt.addEventListener('input',sync);
 }
 function contact(){
@@ -140,9 +141,9 @@ function contact(){
     if(hp.checked)return;
     var est=estimate();
     var pick=function(i){return S.a[i]==null?'-':T.q[i].o[S.a[i]];};
-    var msg=[pick(0),(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-'),pick(2),pick(3),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
-    var L=de?['Videotyp','Einsatz','Anzahl','Länge','Idee','Schätzung']:['Video type','Use','Count','Length','Idea','Estimate'];
-    var rows=[[L[0],pick(0)],[L[1],(S.a[1].map(function(i){return T.q[1].o[i];}).join(', ')||'-')],[L[2],pick(2)],[L[3],pick(3)],[L[4],(S.idea||'-').replace(/\s+/g,' ')],[L[5],est.text]];
+    var msg=[pick(0),pick(2),pick(3),(S.idea||'-').replace(/\s+/g,' '),'Estimate: '+est.text].join(' | ');
+    var L=de?['Videotyp','Anzahl','Länge','Idee','Schätzung']:['Video type','Count','Length','Idea','Estimate'];
+    var rows=[[L[0],pick(0)],[L[1],pick(2)],[L[2],pick(3)],[L[3],(S.idea||'-').replace(/\s+/g,' ')],[L[4],est.text]];
     var subj=T.mailSub.replace(/\s*\((DE|EN)\)\s*$/,'')+' ('+(de?'DE':'EN')+') · '+pick(0)+' · '+S.name;
     var body=JSON.stringify({_subject:T.mailSub,_captcha:'false',_template:'box',name:S.name,email:S.email,message:msg});
     var t0=Date.now(),why='';

@@ -120,7 +120,10 @@ module.exports = async (req, res) => {
     if (!rows.length) {
       // older clients send one string joined by ' | ': type | use | count | length | idea | Estimate: ...
       const parts = message.split(' | ');
-      if (parts.length === 6) {
+      if (parts.length === 5) {
+        const L5 = de ? ['Videotyp', 'Anzahl', 'Länge', 'Idee', 'Schätzung'] : ['Video type', 'Count', 'Length', 'Idea', 'Estimate'];
+        rows = parts.map((p, i) => [L5[i], i === 4 ? p.replace(/^Estimate:\s*/, '') : p]);
+      } else if (parts.length === 6) {
         const L = de ? ['Videotyp', 'Einsatz', 'Anzahl', 'Länge', 'Idee', 'Schätzung'] : ['Video type', 'Use', 'Count', 'Length', 'Idea', 'Estimate'];
         rows = parts.map((p, i) => [L[i], i === 5 ? p.replace(/^Estimate:\s*/, '') : p]);
       } else rows = [[de ? 'Nachricht' : 'Message', message.replace(/ \| /g, '\n')]];
