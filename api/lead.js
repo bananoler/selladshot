@@ -50,7 +50,7 @@ function mailHtml(text) {
   const btn = de ? 'Beispiele ansehen' : 'See examples';
   return '<!doctype html><html><body style="margin:0;padding:0">'
     + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 6px">'
-    + '<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%;background:#ffffff;border:1px solid #e3e9f2;border-radius:14px;overflow:hidden">'
+    + '<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">'
     + '<tr><td style="background:#0e2a5c;padding:20px 28px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>'
     + '<td><img src="cid:logo" width="36" height="36" alt="" style="display:block;border-radius:8px"></td>'
     + '<td style="padding-left:12px;font:800 20px Arial,sans-serif;color:#ffffff;letter-spacing:.02em">SellAdShot</td>'
@@ -75,7 +75,7 @@ function ownerMail(name, email, rows, de) {
   const trs = all.map(([l, v], i) => '<tr><td style="' + td + ';color:#7a879f;width:32%" valign="top">' + esc(l) + '</td><td style="' + td + (i === all.length - 1 ? '' : ';font-weight:' + (/Schätzung|Estimate|Videotyp|Video type/.test(l) ? '700' : '400')) + '">'
     + (l.indexOf('E-') === 0 ? '<a href="mailto:' + esc(v) + '" style="color:#ff6b1a;text-decoration:none">' + esc(v) + '</a>' : esc(v).replace(/\n/g, '<br>')) + '</td></tr>').join('');
   const html = '<!doctype html><html><body style="margin:0;padding:0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 8px">'
-    + '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border:1px solid #e3e9f2;border-radius:12px"><tr><td style="padding:24px 28px">'
+    + '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:12px"><tr><td style="padding:24px 28px">'
     + '<div style="font:800 19px Arial,sans-serif;color:#0e2a5c;padding-bottom:14px">' + (de ? 'Neue Anfrage von ' : 'New enquiry from ') + esc(name) + '</div>'
     + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">' + trs + '</table>'
     + '</td></tr></table></td></tr></table></body></html>';
