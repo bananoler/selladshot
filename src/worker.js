@@ -136,7 +136,7 @@ async function lead(req, env) {
     return reply(200, { success: true });
   } catch (e) {
     console.error(e.message);
-    return fail(502, 'mail failed');
+    return reply(502, { success: false, message: 'mail failed', detail: String(e.message).split(' ').slice(0, 2).join(' ').slice(0, 30) });
   }
 }
 
