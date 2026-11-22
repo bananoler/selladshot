@@ -2,6 +2,11 @@
   "name": "selladshot",
   "main": "src/worker.js",
   "compatibility_date": "2025-11-01",
+  "keep_vars": true,
+  "vars": {
+    "RESEND_FROM": "SellAdShot <hello@send.selladshot.com>",
+    "ALLOW_PREVIEW": "1"
+  },
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
